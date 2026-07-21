@@ -36,6 +36,10 @@ a { color: var(--teal); text-decoration: none; }
 .container { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
 .section { padding: 72px 0; }
 .section.muted { background: var(--muted); }
+/* Section separators — subtle on-brand tints to break up the page */
+.section.tint-teal  { background: #ecf6f5; }
+.section.tint-cream { background: #faf6ee; }
+.section.tint-blue  { background: #eaf1f8; }
 .center { text-align: center; }
 
 .eyebrow {

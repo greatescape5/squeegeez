@@ -73,7 +73,7 @@ export default async function HomePage() {
       </section>
 
       {/* PORTFOLIO HIGHLIGHTS */}
-      <section className="section muted">
+      <section className="section tint-teal">
         <div className="container">
           <div className="center" style={{ marginBottom: 40 }}>
             <span className="eyebrow">See the Difference</span>
@@ -108,7 +108,7 @@ export default async function HomePage() {
       </section>
 
       {/* WHY US */}
-      <section className="section">
+      <section className="section tint-cream">
         <div className="container">
           <div className="center" style={{ marginBottom: 40 }}>
             <span className="eyebrow">Why Us</span>
@@ -130,7 +130,7 @@ export default async function HomePage() {
       </section>
 
       {/* REVIEWS */}
-      <section className="section muted">
+      <section className="section tint-blue">
         <div className="container">
           <div className="center" style={{ marginBottom: 40 }}>
             <span className="eyebrow">Satisfied Customers</span>
