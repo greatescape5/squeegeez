@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { browserSupabase } from '@/lib/supabaseBrowser';
 import type { Project, Folder } from '@/lib/supabase';
+import ServiceIcon from '@/components/ServiceIcon';
 
 type Lead = {
   id: string;
@@ -30,14 +31,12 @@ export default function DashboardPage() {
 
   // ---- New folder form ----
   const [fName, setFName] = useState('');
-  const [fIcon, setFIcon] = useState('');
   const [fDesc, setFDesc] = useState('');
   const [fMsg, setFMsg] = useState('');
 
   // ---- Folder inline edit ----
   const [editId, setEditId] = useState<string | null>(null);
   const [eName, setEName] = useState('');
-  const [eIcon, setEIcon] = useState('');
   const [eDesc, setEDesc] = useState('');
 
   // ---- New project form ----
@@ -83,20 +82,20 @@ export default function DashboardPage() {
     const nextSort = folders.length ? Math.max(...folders.map((f) => f.sort_order)) + 1 : 1;
     const { error } = await supabase.from('folders').insert([{
       name: fName.trim(), slug: slugify(fName), description: fDesc.trim() || null,
-      icon: fIcon.trim() || null, sort_order: nextSort, published: true,
+      sort_order: nextSort, published: true,
     }]);
     if (error) { setFMsg('Error: ' + error.message); return; }
-    setFName(''); setFIcon(''); setFDesc('');
+    setFName(''); setFDesc('');
     await loadData();
   }
 
   function startEdit(f: Folder) {
-    setEditId(f.id); setEName(f.name); setEIcon(f.icon ?? ''); setEDesc(f.description ?? '');
+    setEditId(f.id); setEName(f.name); setEDesc(f.description ?? '');
   }
 
   async function saveEdit(f: Folder) {
     const { error } = await supabase.from('folders').update({
-      name: eName.trim(), slug: slugify(eName), icon: eIcon.trim() || null,
+      name: eName.trim(), slug: slugify(eName),
       description: eDesc.trim() || null,
     }).eq('id', f.id);
     if (!error) { setEditId(null); await loadData(); }
@@ -183,10 +182,7 @@ export default function DashboardPage() {
             <div key={f.id} style={{ borderTop: '1px solid var(--line)', padding: '14px 0' }}>
               {editId === f.id ? (
                 <div style={{ display: 'grid', gap: 8 }}>
-                  <div style={{ display: 'flex', gap: 8 }}>
-                    <input style={{ width: 70 }} value={eIcon} onChange={(e) => setEIcon(e.target.value)} placeholder="🏠" />
-                    <input style={{ flex: 1 }} value={eName} onChange={(e) => setEName(e.target.value)} placeholder="Folder name" />
-                  </div>
+                  <input value={eName} onChange={(e) => setEName(e.target.value)} placeholder="Folder name" />
                   <input value={eDesc} onChange={(e) => setEDesc(e.target.value)} placeholder="Short description" />
                   <div className="btn-row">
                     <button className="btn btn-primary" style={{ padding: '8px 16px' }} onClick={() => saveEdit(f)}>Save</button>
@@ -196,7 +192,10 @@ export default function DashboardPage() {
               ) : (
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
                   <div>
-                    <strong style={{ color: 'var(--navy)' }}>{f.icon ? `${f.icon} ` : ''}{f.name}</strong>
+                    <strong style={{ color: 'var(--navy)', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                      <span style={{ color: 'var(--teal)' }}><ServiceIcon slug={f.slug} name={f.name} size={18} /></span>
+                      {f.name}
+                    </strong>
                     {!f.published && <span className="badge" style={{ marginLeft: 8, background: '#fde8e2', color: 'var(--orange)' }}>Hidden</span>}
                     <div style={{ fontSize: '0.88rem', color: 'var(--body)' }}>
                       {f.description || <em>No description</em>} · {projects.filter((p) => p.folder_id === f.id).length} photos
@@ -216,9 +215,9 @@ export default function DashboardPage() {
           <form onSubmit={handleAddFolder} style={{ borderTop: '2px solid var(--line)', marginTop: 8, paddingTop: 18 }}>
             <h3 style={{ fontSize: '1.05rem' }}>Add a folder</h3>
             {fMsg && <div className={`alert ${fMsg.startsWith('Error') ? 'err' : 'ok'}`}>{fMsg}</div>}
-            <div style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
-              <input style={{ width: 80 }} value={fIcon} onChange={(e) => setFIcon(e.target.value)} placeholder="🏠" aria-label="Icon" />
-              <input style={{ flex: 1 }} value={fName} onChange={(e) => setFName(e.target.value)} placeholder="Folder name (e.g. Solar Panel Cleaning)" required />
+            <p className="form-note" style={{ marginTop: 0 }}>An icon is chosen automatically to match the service name.</p>
+            <div style={{ marginBottom: 10 }}>
+              <input style={{ width: '100%' }} value={fName} onChange={(e) => setFName(e.target.value)} placeholder="Folder name (e.g. Solar Panel Cleaning)" required />
             </div>
             <input style={{ width: '100%', marginBottom: 10 }} value={fDesc} onChange={(e) => setFDesc(e.target.value)} placeholder="Short description (optional)" />
             <button type="submit" className="btn btn-primary">Add Folder</button>

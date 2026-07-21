@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { getFolders, getProjects } from '@/lib/supabase';
+import ServiceIcon from '@/components/ServiceIcon';
 
 export const metadata = {
   title: 'Our Services | Squeegeez Window & Exterior Care',
@@ -47,11 +48,14 @@ export default async function ServicesPage() {
                       <img src={cover} alt={f.name} />
                     ) : (
                       <div className="folder-cover-empty" aria-hidden="true">
-                        <span>{f.icon || '📁'}</span>
+                        <ServiceIcon slug={f.slug} name={f.name} size={56} />
                       </div>
                     )}
                     <div className="meta">
-                      <h3>{f.icon ? `${f.icon} ${f.name}` : f.name}</h3>
+                      <h3 className="folder-title">
+                        <span className="folder-ic"><ServiceIcon slug={f.slug} name={f.name} size={22} /></span>
+                        {f.name}
+                      </h3>
                       {f.description && <p>{f.description}</p>}
                       <span className="folder-count">
                         {items.length} {items.length === 1 ? 'photo' : 'photos'} · View →

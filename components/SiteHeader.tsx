@@ -12,8 +12,8 @@ export default function SiteHeader() {
           <Image
             src="/logo.png"
             alt="Squeegeez Window & Exterior Care"
-            width={44}
-            height={44}
+            width={55}
+            height={55}
             priority
           />
           <span>Squeegeez</span>

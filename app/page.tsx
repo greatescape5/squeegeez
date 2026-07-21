@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { getProjects } from '@/lib/supabase';
+import ServiceIcon from '@/components/ServiceIcon';
 
 // Update this to the real business phone number.
 const PHONE = '(250) 784-8588';
@@ -9,10 +10,10 @@ const PHONE_HREF = 'tel:+12507848588';
 export const revalidate = 60;
 
 const SERVICES = [
-  { icon: '🏠', title: 'Residential Windows', text: 'Interior and exterior cleaning for homes of all sizes.' },
-  { icon: '🏢', title: 'Commercial Windows', text: 'Storefronts on a reliable recurring schedule.' },
-  { icon: '💧', title: 'Pressure Washing', text: 'Driveways, siding, and decks blasted clean.' },
-  { icon: '🍂', title: 'Gutter Cleaning', text: 'Clear out debris before the Kootenay rains hit.' },
+  { title: 'Residential Windows', text: 'Interior and exterior cleaning for homes of all sizes.' },
+  { title: 'Commercial Windows', text: 'Storefronts on a reliable recurring schedule.' },
+  { title: 'Pressure Washing', text: 'Driveways, siding, and decks blasted clean.' },
+  { title: 'Gutter Cleaning', text: 'Clear out debris before the Kootenay rains hit.' },
 ];
 
 const WHY = [
@@ -62,7 +63,7 @@ export default async function HomePage() {
           <div className="grid grid-4">
             {SERVICES.map((s) => (
               <div key={s.title} className="card">
-                <div className="icon">{s.icon}</div>
+                <div className="icon"><ServiceIcon name={s.title} size={26} /></div>
                 <h3>{s.title}</h3>
                 <p>{s.text}</p>
               </div>

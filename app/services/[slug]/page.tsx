@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getFolders, getFolderBySlug, getProjectsByFolder } from '@/lib/supabase';
+import ServiceIcon from '@/components/ServiceIcon';
 
 export const revalidate = 60;
 
@@ -34,8 +35,9 @@ export default async function FolderPage({ params }: { params: { slug: string } 
       <section className="hero" style={{ padding: '56px 0' }}>
         <div className="container center">
           <Link href="/services" style={{ fontWeight: 600 }}>← All Services</Link>
-          <h1 style={{ marginTop: 10 }}>
-            {folder.icon ? `${folder.icon} ${folder.name}` : folder.name}
+          <h1 style={{ marginTop: 10, display: 'inline-flex', alignItems: 'center', gap: 12 }}>
+            <span style={{ color: 'var(--teal)' }}><ServiceIcon slug={folder.slug} name={folder.name} size={34} /></span>
+            {folder.name}
           </h1>
           {folder.description && <p className="lead">{folder.description}</p>}
         </div>

@@ -80,7 +80,7 @@ a { color: var(--teal); text-decoration: none; }
 }
 .nav { display: flex; align-items: center; justify-content: space-between; height: 72px; }
 .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; color: var(--navy); font-size: 1.15rem; }
-.brand img { height: 44px; width: auto; }
+.brand img { height: 55px; width: auto; }
 .nav-links { display: flex; align-items: center; gap: 26px; }
 .nav-links a { color: var(--navy); font-weight: 600; }
 .nav-links a:hover { color: var(--teal); }
@@ -144,9 +144,11 @@ a { color: var(--teal); text-decoration: none; }
 .folder-card { display: block; color: inherit; transition: transform 0.08s ease, box-shadow 0.15s ease; }
 .folder-card:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(15, 58, 86, 0.14); }
 .folder-cover-empty {
-  height: 240px; display: grid; place-items: center; font-size: 3.4rem;
+  height: 240px; display: grid; place-items: center; color: var(--teal);
   background: linear-gradient(160deg, #eaf6f5 0%, #f4fbfb 100%);
 }
+.folder-title { display: flex; align-items: center; gap: 8px; }
+.folder-ic { color: var(--teal); display: inline-flex; }
 .folder-count {
   display: inline-block; margin-top: 10px; font-weight: 700; color: var(--teal); font-size: 0.9rem;
 }
