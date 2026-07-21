@@ -69,7 +69,7 @@ a { color: var(--teal); text-decoration: none; }
 .btn-outline:hover { background: var(--navy); color: #fff; }
 .btn-ghost { background: #fff; color: var(--navy); border-color: var(--line); }
 .btn-row { display: flex; gap: 14px; flex-wrap: wrap; }
-.center .btn-row { justify-content: center; }
+.center .btn-row, .btn-row.center { justify-content: center; }
 
 /* Header */
 .site-header {
