@@ -101,7 +101,7 @@ export default async function HomePage() {
           )}
 
           <div className="center" style={{ marginTop: 34 }}>
-            <Link href="/projects" className="btn btn-ghost">View All Projects</Link>
+            <Link href="/services" className="btn btn-ghost">View All Services</Link>
           </div>
         </div>
       </section>

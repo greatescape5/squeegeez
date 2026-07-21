@@ -7,6 +7,12 @@ const nextConfig = {
       { protocol: 'https', hostname: 'placehold.co' },
     ],
   },
+  async redirects() {
+    return [
+      // The old Projects page is now Services.
+      { source: '/projects', destination: '/services', permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

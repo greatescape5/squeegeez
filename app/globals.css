@@ -139,6 +139,17 @@ a { color: var(--teal); text-decoration: none; }
   letter-spacing: 0.06em; color: var(--navy); background: #eef4f6;
   padding: 4px 10px; border-radius: 999px; margin-bottom: 8px;
 }
+
+/* Folder (service) cards on the Services page */
+.folder-card { display: block; color: inherit; transition: transform 0.08s ease, box-shadow 0.15s ease; }
+.folder-card:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(15, 58, 86, 0.14); }
+.folder-cover-empty {
+  height: 240px; display: grid; place-items: center; font-size: 3.4rem;
+  background: linear-gradient(160deg, #eaf6f5 0%, #f4fbfb 100%);
+}
+.folder-count {
+  display: inline-block; margin-top: 10px; font-weight: 700; color: var(--teal); font-size: 0.9rem;
+}
 .empty-note {
   border: 1px dashed var(--line); border-radius: var(--radius);
   padding: 40px; text-align: center; color: var(--body); background: var(--muted);

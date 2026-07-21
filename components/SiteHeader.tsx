@@ -20,7 +20,7 @@ export default function SiteHeader() {
         </Link>
         <nav className="nav-links">
           <Link href="/">Home</Link>
-          <Link href="/projects">Projects</Link>
+          <Link href="/services">Services</Link>
           <Link href="/contact">Contact</Link>
           <Link href="/contact" className="btn btn-primary nav-cta">Get a Free Quote</Link>
         </nav>
