@@ -54,7 +54,7 @@ export default async function HomePage() {
       </section>
 
       {/* SERVICES */}
-      <section className="section">
+      <section className="section tint-blue">
         <div className="container">
           <div className="center" style={{ marginBottom: 40 }}>
             <span className="eyebrow">What We Do</span>
@@ -149,7 +149,7 @@ export default async function HomePage() {
       </section>
 
       {/* AREAS */}
-      <section className="section">
+      <section className="section tint-teal">
         <div className="container center">
           <span className="eyebrow">We Come To You</span>
           <h2 style={{ marginBottom: 26 }}>Areas We Service</h2>
