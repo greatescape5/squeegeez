@@ -40,6 +40,7 @@ a { color: var(--teal); text-decoration: none; }
 .section.tint-teal  { background: #dcefec; }
 .section.tint-cream { background: #f6eddb; }
 .section.tint-blue  { background: #dde9f6; }
+.section.grad       { background: linear-gradient(160deg, #eef7f6 0%, #ffffff 60%); }
 .center { text-align: center; }
 
 .eyebrow {

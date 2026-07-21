@@ -108,7 +108,7 @@ export default async function HomePage() {
       </section>
 
       {/* WHY US */}
-      <section className="section tint-cream">
+      <section className="section grad">
         <div className="container">
           <div className="center" style={{ marginBottom: 40 }}>
             <span className="eyebrow">Why Us</span>
@@ -160,7 +160,7 @@ export default async function HomePage() {
       </section>
 
       {/* CTA */}
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section grad">
         <div className="container">
           <div className="cta-band">
             <h2>Ready to Refresh Your View?</h2>
