@@ -250,7 +250,7 @@ a { color: var(--teal); text-decoration: none; }
 .cta-band p { color: #d3e3ec; max-width: 560px; margin: 0 auto 22px; }
 
 /* Footer */
-.site-footer { background: var(--navy-deep); color: #cfe0e9; padding: 46px 0 26px; margin-top: 20px; }
+.site-footer { background: var(--navy-deep); color: #cfe0e9; padding: 46px 0 26px; }
 .site-footer a { color: #cfe0e9; }
 .site-footer .cols { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 24px; }
 .site-footer h4 { color: #fff; font-size: 1rem; margin-bottom: 10px; }
