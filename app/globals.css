@@ -98,6 +98,16 @@ a { color: var(--teal); text-decoration: none; }
   border-bottom: 1px solid var(--line);
   padding: 88px 0;
 }
+/* Taller home hero: fill the viewport (minus header) and center content,
+   so only a small peek of the services section shows on desktop. */
+.hero.home-hero {
+  min-height: calc(100vh - 78px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 56px;
+  padding-bottom: 96px;
+}
 .hero .tag { color: var(--body); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.8rem; }
 
 /* Accent bar echoing the logo stripes */
@@ -303,6 +313,7 @@ a { color: var(--teal); text-decoration: none; }
 @media (max-width: 640px) {
   .section { padding: 52px 0; }
   .hero { padding: 60px 0; }
+  .hero.home-hero { min-height: 0; padding-top: 60px; padding-bottom: 80px; }
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   .gallery-grid { grid-template-columns: 1fr; }
   .nav-links { display: none; }

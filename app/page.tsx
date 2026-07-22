@@ -40,7 +40,7 @@ export default async function HomePage() {
   return (
     <>
       {/* HERO */}
-      <section className="hero">
+      <section className="hero home-hero">
         <div className="container center">
           <span className="tag">Castlegar, BC</span>
           <h1>Crystal Clear Windows.<br />Every Time.</h1>
