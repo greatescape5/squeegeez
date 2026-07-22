@@ -98,15 +98,16 @@ a { color: var(--teal); text-decoration: none; }
   border-bottom: 1px solid var(--line);
   padding: 88px 0;
 }
-/* Taller home hero: fill the viewport (minus header) and center content,
-   so only a small peek of the services section shows on desktop. */
+/* Home hero: ~3/4 of the screen tall, content vertically centered.
+   (Future: add a photo background here, e.g.
+    background: linear-gradient(rgba(15,58,86,.45), rgba(15,58,86,.45)), url('/hero.jpg') center/cover;) */
 .hero.home-hero {
-  min-height: calc(100vh - 78px);
+  min-height: 75vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-top: 56px;
-  padding-bottom: 96px;
+  padding-bottom: 72px;
 }
 .hero .tag { color: var(--body); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.8rem; }
 
