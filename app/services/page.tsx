@@ -104,8 +104,18 @@ export default async function ServicesPage() {
             </div>
           )}
 
-          <div className="center" style={{ marginTop: 40 }}>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="section cta-final">
+        <div className="container center">
+          <span className="eyebrow">Let&rsquo;s Get Started</span>
+          <h2>Start Your Project With Confidence</h2>
+          <p>Contact Squeegeez today for a free estimate — no pressure, no obligations.</p>
+          <div className="btn-row center">
             <Link href="/contact" className="btn btn-primary">Get an Estimate</Link>
+            <a href={PHONE_HREF} className="btn btn-ghost">Call Now</a>
           </div>
         </div>
       </section>
