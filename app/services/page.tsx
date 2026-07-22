@@ -72,7 +72,7 @@ export default async function ServicesPage() {
           )}
 
           <div className="center" style={{ marginTop: 40 }}>
-            <Link href="/contact" className="btn btn-primary">Get a Free Quote</Link>
+            <Link href="/contact" className="btn btn-primary">Get an Estimate</Link>
           </div>
         </div>
       </section>

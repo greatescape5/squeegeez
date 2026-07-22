@@ -7,7 +7,7 @@ import Analytics from '@/components/Analytics';
 export const metadata: Metadata = {
   title: 'Squeegeez Window & Exterior Care | Castlegar, BC',
   description:
-    'Professional window washing, pressure washing, and gutter cleaning for homes and businesses across Castlegar, Nelson, Trail and the Kootenays. Get a free quote today.',
+    'Professional window washing, pressure washing, and gutter cleaning for homes and businesses across Castlegar, Nelson, Trail and the Kootenays. Get a free estimate today.',
   openGraph: {
     title: 'Squeegeez Window & Exterior Care',
     description:

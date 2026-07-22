@@ -87,7 +87,7 @@ export default function ContactForm() {
       </div>
 
       <button type="submit" className="btn btn-primary" disabled={status === 'sending'}>
-        {status === 'sending' ? 'Sending…' : 'Request My Free Quote'}
+        {status === 'sending' ? 'Sending…' : 'Get an Estimate'}
       </button>
       <p className="form-note" style={{ marginTop: 12 }}>
         We&rsquo;ll only use your details to respond to your request.

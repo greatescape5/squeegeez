@@ -22,8 +22,9 @@ export default function SiteFooter() {
           <div>
             <h4>Service Areas</h4>
             <p style={{ margin: 0 }}>
-              Castlegar · Nelson · Trail · Rossland<br />
-              Salmo · Montrose · Fruitvale · Grand Forks
+              Castlegar · Trail · Nelson · Fruitvale · Montrose<br />
+              Rossland · Warfield · Slocan · Salmo · Creston<br />
+              Grand Forks · Kaslo · Silverton
             </p>
           </div>
         </div>

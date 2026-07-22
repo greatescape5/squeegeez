@@ -61,7 +61,7 @@ export async function POST(req: Request) {
         from: fromEmail,
         to: toEmail,
         replyTo: email,
-        subject: `New quote request from ${name}`,
+        subject: `New estimate request from ${name}`,
         text:
           `New lead from the Squeegeez website:\n\n` +
           `Name: ${name}\nEmail: ${email}\nPhone: ${phone || '—'}\n` +
