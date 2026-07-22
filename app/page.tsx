@@ -13,15 +13,15 @@ export const revalidate = 60;
 const SERVICES = [
   { title: 'Residential Windows', text: 'Interior and exterior cleaning for homes of all sizes.' },
   { title: 'Commercial Windows', text: 'Storefronts on a reliable recurring schedule.' },
-  { title: 'Pressure Washing', text: 'Driveways, siding, and decks blasted clean.' },
+  { title: 'Track and Screen Cleaning', text: 'Window tracks and screens cleared of built-up dirt and debris.' },
   { title: 'Gutter Cleaning', text: 'Clear out debris before the Kootenay rains hit.' },
 ];
 
 const WHY = [
-  { title: 'Licensed & Insured', text: "You're covered from start to finish, every job." },
-  { title: 'Quality Results', text: 'Pro equipment and a crew that takes pride in the work.' },
-  { title: 'Reliable & On Time', text: 'We show up when we say we will, every time.' },
-  { title: 'Local Expertise', text: 'Proudly serving Castlegar, Nelson, Trail and surrounding areas.' },
+  { title: 'Licensed Business', text: 'WorkSafe BC compliant.' },
+  { title: 'Quality Results', text: '10+ years industry experience.' },
+  { title: 'Reliable & On Time', text: 'Flexible and reliable scheduling.' },
+  { title: 'Liability Insured', text: 'Protecting your job from start to finish.' },
 ];
 
 const REVIEWS = [
@@ -46,7 +46,7 @@ export default async function HomePage() {
           <h1>Crystal Clear Windows.<br />Every Time.</h1>
           <p className="lead">
             Professional window washing and exterior care for homes and businesses
-            across the Kootenays.
+            across the West Kootenays.
           </p>
           <div className="btn-row" style={{ marginTop: 8 }}>
             <Link href="/contact" className="btn btn-primary">Get an Estimate</Link>
@@ -139,8 +139,7 @@ export default async function HomePage() {
             <span className="eyebrow">Why Us</span>
             <h2>Why Choose Squeegeez?</h2>
             <p className="lead">
-              A trusted local company dedicated to enhancing the beauty of your windows
-              and ensuring customer satisfaction.
+              Every project is completed with care, precision, and respect for your property.
             </p>
           </div>
           <div className="grid grid-4">

@@ -50,6 +50,15 @@ function Leaf(p: { size: number }) {
   );
 }
 
+function Screen(p: { size: number }) {
+  return (
+    <svg width={p.size} height={p.size} {...base} aria-hidden="true">
+      <rect x="4" y="4" width="16" height="16" rx="1" />
+      <path d="M4 9h16M4 14h16M9 4v16M14 4v16" />
+    </svg>
+  );
+}
+
 function Sun(p: { size: number }) {
   return (
     <svg width={p.size} height={p.size} {...base} aria-hidden="true">
@@ -71,6 +80,7 @@ function Sparkles(p: { size: number }) {
 export default function ServiceIcon({ slug, name, size = 24 }: Props) {
   const key = `${slug || ''} ${name || ''}`.toLowerCase();
 
+  if (key.includes('track') || key.includes('screen')) return <Screen size={size} />;
   if (key.includes('commerc')) return <Building size={size} />;
   if (key.includes('resid') || key.includes('window')) return <House size={size} />;
   if (key.includes('pressure') || key.includes('wash') || key.includes('power')) return <Droplet size={size} />;
