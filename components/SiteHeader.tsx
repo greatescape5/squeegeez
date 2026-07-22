@@ -22,7 +22,7 @@ export default function SiteHeader() {
           <Link href="/">Home</Link>
           <Link href="/services">Services</Link>
           <Link href="/contact">Contact</Link>
-          <Link href="/contact" className="btn btn-primary nav-cta">Get an Estimate</Link>
+          <Link href="/contact#get-in-touch" className="btn btn-primary nav-cta">Get an Estimate</Link>
         </nav>
       </div>
     </header>

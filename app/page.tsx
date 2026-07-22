@@ -49,7 +49,7 @@ export default async function HomePage() {
             across the West Kootenays.
           </p>
           <div className="btn-row" style={{ marginTop: 8 }}>
-            <Link href="/contact" className="btn btn-primary">Get an Estimate</Link>
+            <Link href="/contact#get-in-touch" className="btn btn-primary">Get an Estimate</Link>
             <a href={PHONE_HREF} className="btn btn-outline">Call Now</a>
           </div>
         </div>
@@ -190,7 +190,7 @@ export default async function HomePage() {
             <h2>Ready to Refresh Your View?</h2>
             <p>Serving Castlegar, Trail, Nelson and the surrounding Kootenays. Contact us for a free estimate today.</p>
             <div className="btn-row center">
-              <Link href="/contact" className="btn btn-primary">Get an Estimate</Link>
+              <Link href="/contact#get-in-touch" className="btn btn-primary">Get an Estimate</Link>
               <a href={PHONE_HREF} className="btn btn-ghost">Call {PHONE}</a>
             </div>
           </div>

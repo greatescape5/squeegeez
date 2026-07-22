@@ -17,6 +17,7 @@
 * { box-sizing: border-box; }
 
 html, body { padding: 0; margin: 0; }
+html { scroll-behavior: smooth; }
 
 body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -160,6 +161,37 @@ a { color: var(--teal); text-decoration: none; }
 .need-help .btn { display: block; width: 100%; text-align: center; margin-top: 12px; }
 .need-help .btn-ghost { background: transparent; color: #fff; border-color: rgba(255, 255, 255, 0.5); }
 .need-help .btn-ghost:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
+
+/* Contact page — Our Story */
+.story-photo {
+  width: 100%; display: block; border-radius: var(--radius); box-shadow: var(--shadow);
+  aspect-ratio: 4 / 3; object-fit: cover;
+}
+.story-list { list-style: none; padding: 0; margin: 22px 0 0; }
+.story-list li { position: relative; padding-left: 22px; margin-bottom: 16px; }
+.story-list li::before {
+  content: ''; position: absolute; left: 0; top: 8px; width: 9px; height: 9px;
+  border-radius: 50%; background: var(--gold);
+}
+.story-list strong { display: block; color: var(--navy); font-size: 1.05rem; }
+.story-list span { color: var(--body); font-size: 0.95rem; }
+
+/* Contact page — contact info card */
+.contact-info { padding: 6px 26px; }
+.ci-row {
+  display: flex; align-items: center; gap: 16px; padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+}
+.ci-row:last-child { border-bottom: none; }
+.ci-ic {
+  flex: none; width: 44px; height: 44px; border-radius: 10px; display: grid; place-items: center;
+  background: #fdf0e9; color: var(--orange);
+}
+.ci-row strong { display: block; color: var(--navy); font-size: 1.05rem; margin-bottom: 2px; }
+.ci-row a, .ci-row span { color: var(--body); font-size: 0.98rem; }
+
+/* Offset for sticky header when jumping to an anchor */
+.anchor-offset { scroll-margin-top: 88px; }
 
 /* Full-width closing CTA band (Services page) */
 .cta-final { background: var(--navy); }
