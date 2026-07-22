@@ -145,6 +145,22 @@ a { color: var(--teal); text-decoration: none; }
   padding: 4px 10px; border-radius: 999px; margin-bottom: 8px;
 }
 
+/* "Everything We Do" + "Not Sure What You Need?" split on the Services page */
+.services-split { align-items: start; gap: 32px; }
+.list-card { padding: 6px 26px; }
+.service-row {
+  display: flex; align-items: center; gap: 16px; padding: 18px 0;
+  border-bottom: 1px solid var(--line); font-weight: 600; color: var(--ink); font-size: 1.06rem;
+}
+.service-row:last-child { border-bottom: none; }
+.service-row-ic { color: var(--teal); display: inline-flex; flex: none; }
+.need-help { background: var(--navy); color: #fff; border-radius: var(--radius); padding: 36px; box-shadow: var(--shadow); }
+.need-help h2 { color: #fff; margin-bottom: 12px; }
+.need-help p { color: #d3e3ec; }
+.need-help .btn { display: block; width: 100%; text-align: center; margin-top: 12px; }
+.need-help .btn-ghost { background: transparent; color: #fff; border-color: rgba(255, 255, 255, 0.5); }
+.need-help .btn-ghost:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
+
 /* Folder (service) cards on the Services page */
 .folder-card { display: block; color: inherit; transition: transform 0.08s ease, box-shadow 0.15s ease; }
 .folder-card:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(15, 58, 86, 0.14); }

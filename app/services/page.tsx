@@ -10,6 +10,10 @@ export const metadata = {
 // Re-check the database periodically so new folders/photos appear without a redeploy.
 export const revalidate = 60;
 
+const PHONE = '(250) 784-8588';
+const PHONE_HREF = 'tel:+12507848588';
+const SERVICE_NAMES = ['Residential Windows', 'Commercial Windows', 'Track and Screen Cleaning', 'Gutter Cleaning'];
+
 export default async function ServicesPage() {
   const [folders, projects] = await Promise.all([getFolders(), getProjects()]);
 
@@ -35,7 +39,36 @@ export default async function ServicesPage() {
         </div>
       </section>
 
+      {/* EVERYTHING WE DO + NOT SURE WHAT YOU NEED */}
       <section className="section">
+        <div className="container">
+          <div className="grid grid-2 services-split">
+            <div>
+              <span className="eyebrow">Full List</span>
+              <h2>Everything We Do</h2>
+              <div className="card list-card">
+                {SERVICE_NAMES.map((name) => (
+                  <div key={name} className="service-row">
+                    <span className="service-row-ic"><ServiceIcon name={name} size={24} /></span>
+                    <span>{name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="need-help">
+              <h2>Not Sure What You Need?</h2>
+              <p>
+                We&rsquo;ll figure it out together. Get in touch for a free, no-pressure estimate —
+                we serve Castlegar, Trail, Nelson, and the surrounding Kootenays.
+              </p>
+              <Link href="/contact" className="btn btn-primary">Get an Estimate</Link>
+              <a href={PHONE_HREF} className="btn btn-ghost">Call {PHONE}</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section tint-teal">
         <div className="container">
           {folders.length > 0 ? (
             <div className="gallery-grid">
