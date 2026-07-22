@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { browserSupabase } from '@/lib/supabaseBrowser';
-import type { Project, Folder } from '@/lib/supabase';
+import type { Project, Folder, Comparison } from '@/lib/supabase';
 import ServiceIcon from '@/components/ServiceIcon';
 
 type Lead = {
@@ -28,6 +28,14 @@ export default function DashboardPage() {
   const [folders, setFolders] = useState<Folder[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
   const [leads, setLeads] = useState<Lead[]>([]);
+  const [comparisons, setComparisons] = useState<Comparison[]>([]);
+
+  // ---- New before/after form ----
+  const [cTitle, setCTitle] = useState('');
+  const [beforeFile, setBeforeFile] = useState<File | null>(null);
+  const [afterFile, setAfterFile] = useState<File | null>(null);
+  const [cSaving, setCSaving] = useState(false);
+  const [cMsg, setCMsg] = useState('');
 
   // ---- New folder form ----
   const [fName, setFName] = useState('');
@@ -57,6 +65,9 @@ export default function DashboardPage() {
     const { data: lds } = await supabase
       .from('leads').select('*').order('created_at', { ascending: false });
     setLeads(lds ?? []);
+    const { data: cmp } = await supabase
+      .from('comparisons').select('*').order('sort_order', { ascending: true });
+    setComparisons(cmp ?? []);
   }, [supabase]);
 
   useEffect(() => {
@@ -114,6 +125,51 @@ export default function DashboardPage() {
         : `Delete "${f.name}"?`
     )) return;
     const { error } = await supabase.from('folders').delete().eq('id', f.id);
+    if (!error) await loadData();
+  }
+
+  // ---------- BEFORE / AFTER ----------
+  async function uploadImage(f: File): Promise<string> {
+    const safeName = f.name.replace(/[^a-zA-Z0-9._-]/g, '-');
+    const path = `${Date.now()}-${Math.round(performance.now())}-${safeName}`;
+    const { error } = await supabase.storage.from('gallery').upload(path, f);
+    if (error) throw error;
+    return supabase.storage.from('gallery').getPublicUrl(path).data.publicUrl;
+  }
+
+  async function handleAddComparison(e: React.FormEvent) {
+    e.preventDefault();
+    setCSaving(true);
+    setCMsg('');
+    try {
+      if (!beforeFile || !afterFile) throw new Error('Please choose both a before and an after photo.');
+      const [beforeUrl, afterUrl] = [await uploadImage(beforeFile), await uploadImage(afterFile)];
+      const nextSort = comparisons.length ? Math.max(...comparisons.map((c) => c.sort_order)) + 1 : 1;
+      const { error } = await supabase.from('comparisons').insert([{
+        title: cTitle.trim() || null, before_image_url: beforeUrl, after_image_url: afterUrl,
+        sort_order: nextSort, published: true,
+      }]);
+      if (error) throw error;
+      setCTitle(''); setBeforeFile(null); setAfterFile(null);
+      (document.getElementById('ba-before') as HTMLInputElement).value = '';
+      (document.getElementById('ba-after') as HTMLInputElement).value = '';
+      setCMsg('Comparison added.');
+      await loadData();
+    } catch (err: any) {
+      setCMsg('Error: ' + (err?.message || 'could not save'));
+    } finally {
+      setCSaving(false);
+    }
+  }
+
+  async function toggleComparison(c: Comparison) {
+    await supabase.from('comparisons').update({ published: !c.published }).eq('id', c.id);
+    await loadData();
+  }
+
+  async function deleteComparison(c: Comparison) {
+    if (!confirm('Delete this before/after comparison?')) return;
+    const { error } = await supabase.from('comparisons').delete().eq('id', c.id);
     if (!error) await loadData();
   }
 
@@ -221,6 +277,53 @@ export default function DashboardPage() {
             </div>
             <input style={{ width: '100%', marginBottom: 10 }} value={fDesc} onChange={(e) => setFDesc(e.target.value)} placeholder="Short description (optional)" />
             <button type="submit" className="btn btn-primary">Add Folder</button>
+          </form>
+        </div>
+
+        {/* ---------- BEFORE / AFTER SHOWCASE ---------- */}
+        <div className="card" style={{ marginBottom: 40 }}>
+          <h2 style={{ fontSize: '1.3rem' }}>Before &amp; After Showcase</h2>
+          <p className="form-note">These appear in the &ldquo;Our Work in Action&rdquo; slider on the home page.</p>
+
+          {comparisons.map((c) => (
+            <div key={c.id} style={{ borderTop: '1px solid var(--line)', padding: '14px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                <div style={{ display: 'flex', gap: 4 }}>
+                  {c.before_image_url && <img src={c.before_image_url} alt="before" style={{ width: 54, height: 40, objectFit: 'cover', borderRadius: 4 }} />}
+                  {c.after_image_url && <img src={c.after_image_url} alt="after" style={{ width: 54, height: 40, objectFit: 'cover', borderRadius: 4 }} />}
+                </div>
+                <div>
+                  <strong style={{ color: 'var(--navy)' }}>{c.title || 'Untitled comparison'}</strong>
+                  {!c.published && <span className="badge" style={{ marginLeft: 8, background: '#fde8e2', color: 'var(--orange)' }}>Hidden</span>}
+                </div>
+              </div>
+              <div className="btn-row">
+                <button className="btn btn-ghost" style={{ padding: '7px 12px', fontSize: '0.85rem' }} onClick={() => toggleComparison(c)}>{c.published ? 'Hide' : 'Show'}</button>
+                <button className="btn btn-ghost" style={{ padding: '7px 12px', fontSize: '0.85rem', color: 'var(--orange)' }} onClick={() => deleteComparison(c)}>Delete</button>
+              </div>
+            </div>
+          ))}
+
+          <form onSubmit={handleAddComparison} style={{ borderTop: '2px solid var(--line)', marginTop: 8, paddingTop: 18 }}>
+            <h3 style={{ fontSize: '1.05rem' }}>Add a before/after</h3>
+            {cMsg && <div className={`alert ${cMsg.startsWith('Error') ? 'err' : 'ok'}`}>{cMsg}</div>}
+            <div className="field">
+              <label htmlFor="ba-title">Title (optional)</label>
+              <input id="ba-title" value={cTitle} onChange={(e) => setCTitle(e.target.value)} placeholder="e.g. Sliding door track" />
+            </div>
+            <div className="grid grid-2" style={{ gap: 16 }}>
+              <div className="field">
+                <label htmlFor="ba-before">Before photo</label>
+                <input id="ba-before" type="file" accept="image/*" onChange={(e) => setBeforeFile(e.target.files?.[0] ?? null)} />
+              </div>
+              <div className="field">
+                <label htmlFor="ba-after">After photo</label>
+                <input id="ba-after" type="file" accept="image/*" onChange={(e) => setAfterFile(e.target.files?.[0] ?? null)} />
+              </div>
+            </div>
+            <button type="submit" className="btn btn-primary" disabled={cSaving}>
+              {cSaving ? 'Uploading…' : 'Add Comparison'}
+            </button>
           </form>
         </div>
 

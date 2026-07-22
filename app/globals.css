@@ -162,6 +162,35 @@ a { color: var(--teal); text-decoration: none; }
   padding: 40px; text-align: center; color: var(--body); background: var(--muted);
 }
 
+/* Before / After slider */
+.ba {
+  position: relative; width: 100%; max-width: 860px; margin: 0 auto;
+  aspect-ratio: 16 / 10; overflow: hidden; border-radius: var(--radius);
+  box-shadow: var(--shadow); user-select: none; touch-action: none; cursor: ew-resize;
+  background: #dfe8ec;
+}
+.ba:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+.ba-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+.ba-before { z-index: 1; }
+.ba-label {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 3;
+  background: rgba(15, 58, 86, 0.72); color: #fff; padding: 6px 14px; border-radius: 6px;
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  pointer-events: none; transition: opacity 0.15s ease;
+}
+.ba-label--before { left: 16px; }
+.ba-label--after  { right: 16px; }
+.ba-divider {
+  position: absolute; top: 0; bottom: 0; width: 3px; background: #fff; z-index: 2;
+  transform: translateX(-50%); pointer-events: none; box-shadow: 0 0 8px rgba(0, 0, 0, 0.35);
+}
+.ba-handle {
+  position: absolute; top: 50%; z-index: 3; width: 46px; height: 46px; border-radius: 50%;
+  background: #fff; color: var(--navy); transform: translate(-50%, -50%);
+  display: grid; place-items: center; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35); pointer-events: none;
+}
+.ba-hint { text-align: center; color: var(--body); font-size: 0.9rem; margin-top: 14px; }
+
 /* Reviews */
 .review { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); }
 .stars { color: var(--gold); font-size: 1.1rem; margin-bottom: 10px; }

@@ -40,6 +40,16 @@ export type Folder = {
   created_at: string;
 };
 
+export type Comparison = {
+  id: string;
+  title: string | null;
+  before_image_url: string | null;
+  after_image_url: string | null;
+  sort_order: number;
+  published: boolean;
+  created_at: string;
+};
+
 // Safe read: always returns an array, never throws — so the build can't break
 // when there's no network, no keys, or the table is empty.
 export async function getProjects(): Promise<Project[]> {
@@ -90,6 +100,23 @@ export async function getFolderBySlug(slug: string): Promise<Folder | null> {
     return data ?? null;
   } catch {
     return null;
+  }
+}
+
+// Published before/after comparison sliders, ordered.
+export async function getComparisons(): Promise<Comparison[]> {
+  const supabase = getSupabase();
+  if (!supabase) return [];
+  try {
+    const { data, error } = await supabase
+      .from('comparisons')
+      .select('*')
+      .eq('published', true)
+      .order('sort_order', { ascending: true });
+    if (error) return [];
+    return data ?? [];
+  } catch {
+    return [];
   }
 }
 

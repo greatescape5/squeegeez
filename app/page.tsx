@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import { getProjects } from '@/lib/supabase';
+import { getProjects, getComparisons } from '@/lib/supabase';
 import ServiceIcon from '@/components/ServiceIcon';
+import BeforeAfter from '@/components/BeforeAfter';
 
 // Update this to the real business phone number.
 const PHONE = '(250) 784-8588';
@@ -32,8 +33,9 @@ const REVIEWS = [
 const AREAS = ['Castlegar', 'Trail', 'Nelson', 'Fruitvale', 'Montrose', 'Rossland', 'Warfield', 'Slocan', 'Salmo', 'Creston', 'Grand Forks', 'Kaslo', 'Silverton'];
 
 export default async function HomePage() {
-  const projects = await getProjects();
+  const [projects, comparisons] = await Promise.all([getProjects(), getComparisons()]);
   const highlights = projects.slice(0, 3);
+  const sliders = comparisons.filter((c) => c.before_image_url && c.after_image_url);
 
   return (
     <>
@@ -71,6 +73,29 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* BEFORE / AFTER SHOWCASE */}
+      {sliders.length > 0 && (
+        <section className="section tint-cream">
+          <div className="container">
+            <div className="center" style={{ marginBottom: 40 }}>
+              <span className="eyebrow">See It For Yourself</span>
+              <h2>Our Work in Action</h2>
+              <p className="lead">Drag the slider to see the difference a professional clean makes.</p>
+            </div>
+            <div style={{ display: 'grid', gap: 40 }}>
+              {sliders.map((c) => (
+                <div key={c.id}>
+                  <BeforeAfter before={c.before_image_url!} after={c.after_image_url!} />
+                  {c.title && (
+                    <p className="ba-hint"><strong>{c.title}</strong> — drag to compare</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* PORTFOLIO HIGHLIGHTS */}
       <section className="section tint-teal">
