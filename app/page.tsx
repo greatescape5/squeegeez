@@ -24,6 +24,9 @@ const WHY = [
   { title: 'Liability Insured', text: 'Protecting your job from start to finish.' },
 ];
 
+// Reviews are hidden until we have real ones — set to true to show the section again.
+const SHOW_REVIEWS = false;
+
 const REVIEWS = [
   { text: 'Windows, gutters, and the deck all done in one visit. Huge time saver.', who: 'Dana K., Nelson' },
   { text: 'Does our storefront every two weeks. Reliable, affordable, always professional.', who: 'Tom R., Trail' },
@@ -153,7 +156,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* REVIEWS */}
+      {/* REVIEWS — hidden until we have real reviews (SHOW_REVIEWS) */}
+      {SHOW_REVIEWS && (
       <section className="section tint-blue">
         <div className="container">
           <div className="center" style={{ marginBottom: 40 }}>
@@ -171,6 +175,7 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* AREAS */}
       <section className="section tint-teal">

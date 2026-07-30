@@ -32,28 +32,17 @@ export default function ContactPage() {
             <div>
               <span className="eyebrow">Our Story</span>
               <p>
-                Squeegeez started right here in Castlegar — built on the idea that your home deserves
-                to look its best without the hassle. We show up on time, do the job properly, and
-                leave your property cleaner than we found it.
+                Squeegeez was founded in Castlegar with a commitment to providing exceptional window
+                and exterior cleaning services tailored to the unique needs of your property. Your home
+                or business is a significant investment, and we believe it deserves exceptional care.
               </p>
               <p>
-                We know the Kootenay climate — the mud seasons, the pine sap, the hard water spots —
-                and we use the right techniques for every situation.
+                Our approach is simple: arrive on time, communicate clearly, and deliver workmanship
+                that exceeds expectations. We take pride in leaving every property looking its absolute
+                best, so you can enjoy a cleaner, brighter experience without the hassle. We use
+                professional techniques and premium equipment to achieve outstanding results. Every
+                service is completed with precision, respect, and meticulous attention to detail.
               </p>
-              <ul className="story-list">
-                <li>
-                  <strong>Licensed &amp; Insured</strong>
-                  <span>You&rsquo;re covered on every job, no exceptions.</span>
-                </li>
-                <li>
-                  <strong>Eco-Friendly Products</strong>
-                  <span>Safe for your family, your pets, and the environment.</span>
-                </li>
-                <li>
-                  <strong>Satisfaction Guaranteed</strong>
-                  <span>Not happy? We&rsquo;ll come back and make it right.</span>
-                </li>
-              </ul>
             </div>
             <div>
               {/* Replace with your team photo: drop it at public/our-story.jpg */}
