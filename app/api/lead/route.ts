@@ -79,9 +79,16 @@ export async function POST(req: Request) {
           `We've received your request and will get back to you shortly with a free estimate.\n\n` +
           `— The Squeegeez Team`,
       });
-    } catch {
-      // Email failed — that's fine, the lead is what matters.
+    } catch (err) {
+      // Email failed — the lead is still saved. Log so it's visible in Vercel logs.
+      console.error('Resend email failed:', err);
     }
+  } else {
+    console.warn('Email skipped — missing env var(s):', {
+      RESEND_API_KEY: !!resendKey,
+      LEAD_TO_EMAIL: !!toEmail,
+      LEAD_FROM_EMAIL: !!fromEmail,
+    });
   }
 
   // As long as we saved OR email is off, treat as success so the form still works
