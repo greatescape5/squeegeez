@@ -24,6 +24,7 @@ export default function ContactForm() {
       name: (form.elements.namedItem('name') as HTMLInputElement).value,
       email: (form.elements.namedItem('email') as HTMLInputElement).value,
       phone: (form.elements.namedItem('phone') as HTMLInputElement).value,
+      address: (form.elements.namedItem('address') as HTMLInputElement).value,
       service: (form.elements.namedItem('service') as HTMLSelectElement).value,
       message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
     };
@@ -71,6 +72,11 @@ export default function ContactForm() {
       <div className="field">
         <label htmlFor="phone">Phone</label>
         <input id="phone" name="phone" type="tel" placeholder="(250) 555-0123" />
+      </div>
+
+      <div className="field">
+        <label htmlFor="address">Address</label>
+        <input id="address" name="address" type="text" placeholder="Street, city (helps us prepare your estimate)" />
       </div>
 
       <div className="field">

@@ -11,6 +11,7 @@ type Lead = {
   name: string;
   email: string;
   phone: string | null;
+  address: string | null;
   service: string | null;
   message: string | null;
   created_at: string;
@@ -519,6 +520,7 @@ export default function DashboardPage() {
                   <th style={{ padding: 8 }}>Name</th>
                   <th style={{ padding: 8 }}>Email</th>
                   <th style={{ padding: 8 }}>Phone</th>
+                  <th style={{ padding: 8 }}>Address</th>
                   <th style={{ padding: 8 }}>Service</th>
                   <th style={{ padding: 8 }}>Message</th>
                 </tr>
@@ -530,6 +532,7 @@ export default function DashboardPage() {
                     <td style={{ padding: 8 }}>{l.name}</td>
                     <td style={{ padding: 8 }}><a href={`mailto:${l.email}`}>{l.email}</a></td>
                     <td style={{ padding: 8 }}>{l.phone || '—'}</td>
+                    <td style={{ padding: 8 }}>{l.address || '—'}</td>
                     <td style={{ padding: 8 }}>{l.service || '—'}</td>
                     <td style={{ padding: 8, maxWidth: 280 }}>{l.message || '—'}</td>
                   </tr>

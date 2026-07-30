@@ -7,6 +7,7 @@ type LeadBody = {
   name?: string;
   email?: string;
   phone?: string;
+  address?: string;
   service?: string;
   message?: string;
 };
@@ -22,6 +23,7 @@ export async function POST(req: Request) {
   const name = (body.name || '').trim();
   const email = (body.email || '').trim();
   const phone = (body.phone || '').trim();
+  const address = (body.address || '').trim();
   const service = (body.service || '').trim();
   const message = (body.message || '').trim();
 
@@ -37,9 +39,17 @@ export async function POST(req: Request) {
   try {
     if (url && anonKey) {
       const supabase = createClient(url, anonKey);
-      const { error } = await supabase
+      let { error } = await supabase
         .from('leads')
-        .insert([{ name, email, phone, service, message }]);
+        .insert([{ name, email, phone, address, service, message }]);
+      if (error) {
+        // Fallback: if the 'address' column hasn't been added yet, still save the
+        // core lead so it's never lost. (Run the address migration to capture it.)
+        const retry = await supabase
+          .from('leads')
+          .insert([{ name, email, phone, service, message }]);
+        error = retry.error;
+      }
       if (!error) saved = true;
     }
   } catch {
@@ -67,7 +77,7 @@ export async function POST(req: Request) {
         text:
           `New lead from the Squeegeez website:\n\n` +
           `Name: ${name}\nEmail: ${email}\nPhone: ${phone || '—'}\n` +
-          `Service: ${service || '—'}\n\nMessage:\n${message || '—'}`,
+          `Address: ${address || '—'}\nService: ${service || '—'}\n\nMessage:\n${message || '—'}`,
       });
 
       // Confirmation to the customer
