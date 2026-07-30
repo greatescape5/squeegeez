@@ -37,6 +37,21 @@ export default function DashboardPage() {
   const [cSaving, setCSaving] = useState(false);
   const [cMsg, setCMsg] = useState('');
 
+  // ---- Before/after inline edit ----
+  const [cEditId, setCEditId] = useState<string | null>(null);
+  const [ceTitle, setCeTitle] = useState('');
+  const [ceBefore, setCeBefore] = useState<File | null>(null);
+  const [ceAfter, setCeAfter] = useState<File | null>(null);
+  const [ceSaving, setCeSaving] = useState(false);
+  const [ceMsg, setCeMsg] = useState('');
+
+  // ---- Add photo to a folder ----
+  const [photoFolderId, setPhotoFolderId] = useState<string | null>(null);
+  const [fpCaption, setFpCaption] = useState('');
+  const [fpFile, setFpFile] = useState<File | null>(null);
+  const [fpSaving, setFpSaving] = useState(false);
+  const [fpMsg, setFpMsg] = useState('');
+
   // ---- New folder form ----
   const [fName, setFName] = useState('');
   const [fDesc, setFDesc] = useState('');
@@ -128,6 +143,29 @@ export default function DashboardPage() {
     if (!error) await loadData();
   }
 
+  async function handleAddFolderPhoto(e: React.FormEvent, f: Folder) {
+    e.preventDefault();
+    setFpSaving(true);
+    setFpMsg('');
+    try {
+      if (!fpFile) throw new Error('Choose a photo first.');
+      const imageUrl = await uploadImage(fpFile);
+      const nextSort = projects.length ? Math.max(...projects.map((p) => p.sort_order)) + 1 : 1;
+      const { error } = await supabase.from('projects').insert([{
+        name: fpCaption.trim() || f.name, folder_id: f.id, category: f.name,
+        description: null, after_image_url: imageUrl, sort_order: nextSort, published: true,
+      }]);
+      if (error) throw error;
+      setFpCaption(''); setFpFile(null);
+      setFpMsg('Photo added.');
+      await loadData();
+    } catch (err: any) {
+      setFpMsg('Error: ' + (err?.message || 'could not save'));
+    } finally {
+      setFpSaving(false);
+    }
+  }
+
   // ---------- BEFORE / AFTER ----------
   async function uploadImage(f: File): Promise<string> {
     const safeName = f.name.replace(/[^a-zA-Z0-9._-]/g, '-');
@@ -171,6 +209,28 @@ export default function DashboardPage() {
     if (!confirm('Delete this before/after comparison?')) return;
     const { error } = await supabase.from('comparisons').delete().eq('id', c.id);
     if (!error) await loadData();
+  }
+
+  function startEditComparison(c: Comparison) {
+    setCEditId(c.id); setCeTitle(c.title ?? ''); setCeBefore(null); setCeAfter(null); setCeMsg('');
+  }
+
+  async function saveComparison(c: Comparison) {
+    setCeSaving(true);
+    setCeMsg('');
+    try {
+      const patch: Record<string, unknown> = { title: ceTitle.trim() || null };
+      if (ceBefore) patch.before_image_url = await uploadImage(ceBefore);
+      if (ceAfter) patch.after_image_url = await uploadImage(ceAfter);
+      const { error } = await supabase.from('comparisons').update(patch).eq('id', c.id);
+      if (error) throw error;
+      setCEditId(null);
+      await loadData();
+    } catch (err: any) {
+      setCeMsg('Error: ' + (err?.message || 'could not save'));
+    } finally {
+      setCeSaving(false);
+    }
   }
 
   // ---------- PROJECTS ----------
@@ -259,9 +319,41 @@ export default function DashboardPage() {
                   </div>
                   <div className="btn-row">
                     <button className="btn btn-ghost" style={{ padding: '7px 12px', fontSize: '0.85rem' }} onClick={() => startEdit(f)}>Edit</button>
+                    <button className="btn btn-ghost" style={{ padding: '7px 12px', fontSize: '0.85rem' }} onClick={() => { setPhotoFolderId(photoFolderId === f.id ? null : f.id); setFpMsg(''); setFpCaption(''); setFpFile(null); }}>Add Photo</button>
                     <button className="btn btn-ghost" style={{ padding: '7px 12px', fontSize: '0.85rem' }} onClick={() => toggleFolder(f)}>{f.published ? 'Hide' : 'Show'}</button>
                     <button className="btn btn-ghost" style={{ padding: '7px 12px', fontSize: '0.85rem', color: 'var(--orange)' }} onClick={() => deleteFolder(f)}>Delete</button>
                   </div>
+                </div>
+              )}
+
+              {photoFolderId === f.id && (
+                <div style={{ marginTop: 12, background: 'var(--muted)', borderRadius: 10, padding: 14 }}>
+                  <strong style={{ color: 'var(--navy)', fontSize: '0.95rem' }}>Photos in {f.name}</strong>
+                  {fpMsg && <div className={`alert ${fpMsg.startsWith('Error') ? 'err' : 'ok'}`} style={{ marginTop: 8 }}>{fpMsg}</div>}
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, margin: '12px 0' }}>
+                    {projects.filter((p) => p.folder_id === f.id).map((p) => (
+                      <div key={p.id} style={{ position: 'relative' }}>
+                        {p.after_image_url && <img src={p.after_image_url} alt={p.name} style={{ width: 84, height: 62, objectFit: 'cover', borderRadius: 6, display: 'block' }} />}
+                        <button type="button" title="Delete photo" onClick={() => handleDeleteProject(p.id)}
+                          style={{ position: 'absolute', top: -6, right: -6, width: 22, height: 22, borderRadius: '50%', border: 'none', background: 'var(--orange)', color: '#fff', cursor: 'pointer', lineHeight: '20px', fontWeight: 700 }}>×</button>
+                      </div>
+                    ))}
+                    {projects.filter((p) => p.folder_id === f.id).length === 0 && <span className="form-note">No photos in this folder yet.</span>}
+                  </div>
+                  <form onSubmit={(e) => handleAddFolderPhoto(e, f)}>
+                    <div className="field">
+                      <label>Caption (optional)</label>
+                      <input value={fpCaption} onChange={(e) => setFpCaption(e.target.value)} placeholder={`e.g. ${f.name} job in Castlegar`} />
+                    </div>
+                    <div className="field">
+                      <label>Photo</label>
+                      <input key={projects.filter((p) => p.folder_id === f.id).length} type="file" accept="image/*" onChange={(e) => setFpFile(e.target.files?.[0] ?? null)} />
+                    </div>
+                    <div className="btn-row">
+                      <button type="submit" className="btn btn-primary" style={{ padding: '8px 16px' }} disabled={fpSaving}>{fpSaving ? 'Uploading…' : 'Add Photo'}</button>
+                      <button type="button" className="btn btn-ghost" style={{ padding: '8px 16px' }} onClick={() => { setPhotoFolderId(null); setFpFile(null); setFpCaption(''); }}>Close</button>
+                    </div>
+                  </form>
                 </div>
               )}
             </div>
@@ -286,21 +378,50 @@ export default function DashboardPage() {
           <p className="form-note">These appear in the &ldquo;Our Work in Action&rdquo; slider on the home page.</p>
 
           {comparisons.map((c) => (
-            <div key={c.id} style={{ borderTop: '1px solid var(--line)', padding: '14px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                <div style={{ display: 'flex', gap: 4 }}>
-                  {c.before_image_url && <img src={c.before_image_url} alt="before" style={{ width: 54, height: 40, objectFit: 'cover', borderRadius: 4 }} />}
-                  {c.after_image_url && <img src={c.after_image_url} alt="after" style={{ width: 54, height: 40, objectFit: 'cover', borderRadius: 4 }} />}
+            <div key={c.id} style={{ borderTop: '1px solid var(--line)', padding: '14px 0' }}>
+              {cEditId === c.id ? (
+                <div style={{ display: 'grid', gap: 10 }}>
+                  <div className="field">
+                    <label>Caption / title (optional)</label>
+                    <input value={ceTitle} onChange={(e) => setCeTitle(e.target.value)} placeholder="e.g. Sliding door track" />
+                  </div>
+                  <div className="grid grid-2" style={{ gap: 16 }}>
+                    <div className="field">
+                      <label>Before photo (leave blank to keep)</label>
+                      {c.before_image_url && <img src={c.before_image_url} alt="before" style={{ width: 100, height: 66, objectFit: 'cover', borderRadius: 6, display: 'block', marginBottom: 6 }} />}
+                      <input type="file" accept="image/*" onChange={(e) => setCeBefore(e.target.files?.[0] ?? null)} />
+                    </div>
+                    <div className="field">
+                      <label>After photo (leave blank to keep)</label>
+                      {c.after_image_url && <img src={c.after_image_url} alt="after" style={{ width: 100, height: 66, objectFit: 'cover', borderRadius: 6, display: 'block', marginBottom: 6 }} />}
+                      <input type="file" accept="image/*" onChange={(e) => setCeAfter(e.target.files?.[0] ?? null)} />
+                    </div>
+                  </div>
+                  {ceMsg && <div className={`alert ${ceMsg.startsWith('Error') ? 'err' : 'ok'}`}>{ceMsg}</div>}
+                  <div className="btn-row">
+                    <button className="btn btn-primary" style={{ padding: '8px 16px' }} disabled={ceSaving} onClick={() => saveComparison(c)}>{ceSaving ? 'Saving…' : 'Save'}</button>
+                    <button className="btn btn-ghost" style={{ padding: '8px 16px' }} onClick={() => setCEditId(null)}>Cancel</button>
+                  </div>
                 </div>
-                <div>
-                  <strong style={{ color: 'var(--navy)' }}>{c.title || 'Untitled comparison'}</strong>
-                  {!c.published && <span className="badge" style={{ marginLeft: 8, background: '#fde8e2', color: 'var(--orange)' }}>Hidden</span>}
+              ) : (
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                    <div style={{ display: 'flex', gap: 4 }}>
+                      {c.before_image_url && <img src={c.before_image_url} alt="before" style={{ width: 54, height: 40, objectFit: 'cover', borderRadius: 4 }} />}
+                      {c.after_image_url && <img src={c.after_image_url} alt="after" style={{ width: 54, height: 40, objectFit: 'cover', borderRadius: 4 }} />}
+                    </div>
+                    <div>
+                      <strong style={{ color: 'var(--navy)' }}>{c.title || 'Untitled comparison'}</strong>
+                      {!c.published && <span className="badge" style={{ marginLeft: 8, background: '#fde8e2', color: 'var(--orange)' }}>Hidden</span>}
+                    </div>
+                  </div>
+                  <div className="btn-row">
+                    <button className="btn btn-ghost" style={{ padding: '7px 12px', fontSize: '0.85rem' }} onClick={() => startEditComparison(c)}>Edit</button>
+                    <button className="btn btn-ghost" style={{ padding: '7px 12px', fontSize: '0.85rem' }} onClick={() => toggleComparison(c)}>{c.published ? 'Hide' : 'Show'}</button>
+                    <button className="btn btn-ghost" style={{ padding: '7px 12px', fontSize: '0.85rem', color: 'var(--orange)' }} onClick={() => deleteComparison(c)}>Delete</button>
+                  </div>
                 </div>
-              </div>
-              <div className="btn-row">
-                <button className="btn btn-ghost" style={{ padding: '7px 12px', fontSize: '0.85rem' }} onClick={() => toggleComparison(c)}>{c.published ? 'Hide' : 'Show'}</button>
-                <button className="btn btn-ghost" style={{ padding: '7px 12px', fontSize: '0.85rem', color: 'var(--orange)' }} onClick={() => deleteComparison(c)}>Delete</button>
-              </div>
+              )}
             </div>
           ))}
 
