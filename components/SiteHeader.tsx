@@ -1,14 +1,20 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState } from 'react';
 
 export default function SiteHeader() {
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
+
   return (
     <header className="site-header">
       <div className="stripe" aria-hidden="true">
         <span /><span /><span /><span />
       </div>
       <div className="container nav">
-        <Link href="/" className="brand">
+        <Link href="/" className="brand" onClick={close}>
           <Image
             src="/logo.png"
             alt="Squeegeez Window & Exterior Care"
@@ -18,11 +24,22 @@ export default function SiteHeader() {
           />
           <span>Squeegeez</span>
         </Link>
-        <nav className="nav-links">
-          <Link href="/">Home</Link>
-          <Link href="/services">Services</Link>
-          <Link href="/contact">Contact</Link>
-          <Link href="/contact#get-in-touch" className="btn btn-primary nav-cta">Get an Estimate</Link>
+
+        <button
+          type="button"
+          className={`nav-toggle ${open ? 'open' : ''}`}
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-expanded={open}
+          onClick={() => setOpen((o) => !o)}
+        >
+          <span /><span /><span />
+        </button>
+
+        <nav className={`nav-links ${open ? 'open' : ''}`}>
+          <Link href="/" onClick={close}>Home</Link>
+          <Link href="/services" onClick={close}>Services</Link>
+          <Link href="/contact" onClick={close}>Contact</Link>
+          <Link href="/contact#get-in-touch" className="btn btn-primary nav-cta" onClick={close}>Get an Estimate</Link>
         </nav>
       </div>
     </header>
