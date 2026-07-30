@@ -49,7 +49,9 @@ export async function POST(req: Request) {
   // ---- 2. Best-effort emails via Resend (only if configured) ----
   const resendKey = process.env.RESEND_API_KEY;
   const toEmail = process.env.LEAD_TO_EMAIL;      // business owner
-  const fromEmail = process.env.LEAD_FROM_EMAIL;  // verified sender on your domain
+  const fromEmail = process.env.LEAD_FROM_EMAIL;  // verified sender on your domain (e.g. noreply@squeegeez.ca)
+  // Where customer replies to the confirmation email should go (a real inbox).
+  const replyToEmail = process.env.LEAD_REPLY_TO || 'contact@squeegeez.ca';
 
   if (resendKey && toEmail && fromEmail) {
     try {
@@ -72,6 +74,7 @@ export async function POST(req: Request) {
       await resend.emails.send({
         from: fromEmail,
         to: email,
+        replyTo: replyToEmail,
         subject: 'We got your request — Squeegeez Window & Exterior Care',
         text:
           `Hi ${name},\n\n` +
