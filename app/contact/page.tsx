@@ -2,8 +2,9 @@ import ContactForm from './ContactForm';
 import HashScroll from '@/components/HashScroll';
 
 export const metadata = {
-  title: 'Contact | Squeegeez Window & Exterior Care',
-  description: 'Get a free window washing or exterior care estimate in Castlegar, Nelson, Trail and the Kootenays.',
+  title: 'Contact Us — Free Estimate',
+  description: 'Get a free window washing or exterior care estimate in Castlegar, Nelson, Trail and the Kootenays. Call, text or send us a message.',
+  alternates: { canonical: '/contact' },
 };
 
 const PHONE = '(250) 784-8588';

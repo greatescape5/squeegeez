@@ -3,8 +3,10 @@ import { getFolders, getProjects } from '@/lib/supabase';
 import ServiceIcon from '@/components/ServiceIcon';
 
 export const metadata = {
-  title: 'Our Services | Squeegeez Window & Exterior Care',
-  description: 'Explore our services — residential and commercial windows, pressure washing, and gutter cleaning across the Kootenays.',
+  title: 'Window Cleaning, Gutter & Pressure Washing Services',
+  description:
+    'Residential and commercial window cleaning, gutter cleaning, track & screen cleaning and pressure washing across Castlegar, Nelson, Trail and the Kootenays.',
+  alternates: { canonical: '/services' },
 };
 
 // Re-check the database periodically so new folders/photos appear without a redeploy.

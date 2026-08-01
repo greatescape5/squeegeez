@@ -1,7 +1,15 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getProjects, getComparisons } from '@/lib/supabase';
 import ServiceIcon from '@/components/ServiceIcon';
 import BeforeAfter from '@/components/BeforeAfter';
+
+export const metadata: Metadata = {
+  title: 'Window Cleaning in Castlegar & the Kootenays | Squeegeez',
+  description:
+    'Squeegeez provides professional window washing, gutter cleaning and exterior care for homes and businesses in Castlegar, Nelson, Trail and across the West Kootenays. Book a free estimate.',
+  alternates: { canonical: '/' },
+};
 
 // Update this to the real business phone number.
 const PHONE = '(250) 784-8588';

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getFolders, getFolderBySlug, getProjectsByFolder } from '@/lib/supabase';
 import ServiceIcon from '@/components/ServiceIcon';
+import { serviceJsonLd, breadcrumbJsonLd } from '@/lib/seo';
 
 export const revalidate = 60;
 
@@ -17,10 +18,11 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const folder = await getFolderBySlug(params.slug);
-  if (!folder) return { title: 'Service | Squeegeez' };
+  if (!folder) return { title: 'Service' };
   return {
-    title: `${folder.name} | Squeegeez Window & Exterior Care`,
-    description: folder.description || `${folder.name} projects across the Kootenays.`,
+    title: folder.name,
+    description: folder.description || `${folder.name} across Castlegar, Nelson, Trail and the Kootenays.`,
+    alternates: { canonical: `/services/${folder.slug}` },
   };
 }
 
@@ -32,6 +34,23 @@ export default async function FolderPage({ params }: { params: { slug: string } 
 
   return (
     <>
+      {/* Structured data: this service + breadcrumb trail */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(serviceJsonLd({ name: folder.name, slug: folder.slug, description: folder.description })),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd([
+            { name: 'Home', path: '/' },
+            { name: 'Services', path: '/services' },
+            { name: folder.name, path: `/services/${folder.slug}` },
+          ])),
+        }}
+      />
       <section className="hero" style={{ padding: '56px 0' }}>
         <div className="container center">
           <Link href="/services" style={{ fontWeight: 600 }}>← All Services</Link>
