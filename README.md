@@ -54,3 +54,35 @@ cp .env.local.example .env.local   # then fill in your Supabase keys
 npm run dev
 ```
 Open http://localhost:3000
+
+## Pick up on another machine
+```
+git clone https://github.com/greatescape5/squeegeez.git
+cd squeegeez
+npm install
+npm run dev          # runs with placeholder data if there's no .env.local
+```
+`npm run build` now succeeds even without Supabase keys (handy for CI), so you can
+verify a build anywhere. For real data locally, add `.env.local` as above.
+
+## SEO
+Search-engine essentials are built into the app (no plugin needed):
+- **`app/sitemap.ts`** → `/sitemap.xml` (auto-includes every service page)
+- **`app/robots.ts`** → `/robots.txt` (disallows `/admin`)
+- **`lib/seo.ts`** — one place for the domain + business details; builds the
+  `LocalBusiness` / `WebSite` / `Service` / `BreadcrumbList` JSON-LD schema
+- Per-page canonicals, titles, meta descriptions, and OpenGraph/Twitter tags
+
+Optional env vars (add in Vercel, then redeploy):
+```
+NEXT_PUBLIC_SITE_URL                    = https://squeegeez.ca   # if the domain changes
+NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION    = <code from Google Search Console>
+NEXT_PUBLIC_BING_SITE_VERIFICATION      = <code from Bing Webmaster Tools>
+```
+
+**Docs & next steps:**
+- `docs/seo-status.md` — full SEO checklist: what's done vs. what needs an account login
+- `docs/seo-keyword-research.md` — competitors, keyword map, search intent, FAQ questions
+
+Top manual to-dos: set up **Google Business Profile**, verify **GSC + Bing** and submit
+the sitemap, and pick **one canonical domain** in Vercel (301 the other variant).
