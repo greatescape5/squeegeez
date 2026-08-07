@@ -338,6 +338,22 @@ a { color: var(--teal); text-decoration: none; }
 .admin-dot { color: var(--navy-deep); opacity: 0.35; padding: 0 4px; cursor: pointer; }
 .admin-dot:hover { opacity: 0.6; }
 
+/* "Website designed and managed by …" credit line */
+.footer-credit {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+.footer-credit .credit-name {
+  font-family: var(--font-cinzel), Georgia, serif;
+  letter-spacing: 0.05em;
+  color: #e2edf3;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.footer-credit .credit-name:hover { color: #fff; }
+
 /* Responsive */
 @media (max-width: 900px) {
   .grid-4 { grid-template-columns: repeat(2, 1fr); }

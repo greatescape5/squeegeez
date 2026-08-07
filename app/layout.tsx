@@ -1,9 +1,18 @@
 import type { Metadata } from 'next';
+import { Cinzel } from 'next/font/google';
 import './globals.css';
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
 import Analytics from '@/components/Analytics';
 import { SITE_URL, BUSINESS, localBusinessJsonLd, websiteJsonLd } from '@/lib/seo';
+
+// Cinzel — used for the "Great Escape Web & Business Services" credit in the footer.
+const cinzel = Cinzel({
+  subsets: ['latin'],
+  weight: ['400', '600'],
+  variable: '--font-cinzel',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   // metadataBase makes every canonical + OG/Twitter URL absolute.
@@ -52,7 +61,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={cinzel.variable}>
       <body>
         {/* Site-wide structured data: LocalBusiness + WebSite */}
         <script

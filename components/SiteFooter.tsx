@@ -35,6 +35,18 @@ export default function SiteFooter() {
           </span>
           <span>Serving the Kootenays, BC</span>
         </div>
+
+        <div className="footer-credit">
+          Website designed and managed by{' '}
+          <a
+            href="https://greatescapewebservices.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="credit-name"
+          >
+            Great Escape Web &amp; Business Services
+          </a>
+        </div>
       </div>
     </footer>
   );
