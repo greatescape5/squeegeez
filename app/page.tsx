@@ -43,6 +43,9 @@ const SAFETY = [
 // Reviews are hidden until we have real ones — set to true to show the section again.
 const SHOW_REVIEWS = false;
 
+// Project gallery hidden until we have more photos — set to true to show it again.
+const SHOW_PROJECTS = false;
+
 const REVIEWS = [
   { text: 'Windows, gutters, and the deck all done in one visit. Huge time saver.', who: 'Dana K., Nelson' },
   { text: 'Does our storefront every two weeks. Reliable, affordable, always professional.', who: 'Tom R., Trail' },
@@ -62,11 +65,10 @@ export default async function HomePage() {
       <section className="hero home-hero">
         <div className="container center">
           <span className="tag">Castlegar, BC</span>
-          <h1>Crystal clear windows.<br />Every time.</h1>
+          <h1>Crystal clear windows.<br />Done right.</h1>
           <h2 className="hero-subtitle">Proudly serving the West Kootenays</h2>
           <p className="lead">
-            Professional window washing and exterior care for homes and businesses
-            across the West Kootenays.
+            Professional window washing and exterior care for homes and businesses.
           </p>
           <div className="btn-row" style={{ marginTop: 8 }}>
             <Link href="/contact#get-in-touch" className="btn btn-primary">Get an estimate</Link>
@@ -117,7 +119,8 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* PORTFOLIO HIGHLIGHTS */}
+      {/* PORTFOLIO HIGHLIGHTS — hidden until we have more photos (SHOW_PROJECTS) */}
+      {SHOW_PROJECTS && (
       <section className="section tint-teal">
         <div className="container">
           <div className="center" style={{ marginBottom: 40 }}>
@@ -151,6 +154,7 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* WHY US */}
       <section className="section grad">

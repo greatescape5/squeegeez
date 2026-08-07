@@ -26,37 +26,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* OUR STORY */}
-      <section className="section">
-        <div className="container">
-          <div className="grid grid-2 services-split">
-            <div>
-              <span className="eyebrow">Our mission</span>
-              <p>
-                Squeegeez was founded on a commitment to providing exceptional window
-                and exterior cleaning services tailored to the unique needs of your property. Your home
-                or business is a significant investment, and we believe it deserves exceptional care.
-              </p>
-              <p>
-                Our approach is simple: arrive on time, communicate clearly, and deliver workmanship
-                that exceeds expectations. We take pride in leaving every property looking its absolute
-                best, so you can enjoy a cleaner, brighter experience without the hassle. We use
-                professional techniques and premium equipment to achieve outstanding results. Every
-                service is completed with precision, respect, and meticulous attention to detail.
-              </p>
-            </div>
-            <div>
-              {/* Replace with your team photo: drop it at public/our-story.jpg */}
-              <img
-                className="story-photo"
-                src="https://placehold.co/800x600/0f3a56/ffffff?text=Our+Team"
-                alt="The Squeegeez team"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* GET IN TOUCH */}
       <section id="get-in-touch" className="section tint-cream anchor-offset">
         <div className="container">
@@ -107,6 +76,37 @@ export default function ContactPage() {
             {/* Form */}
             <div className="card">
               <ContactForm />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* OUR MISSION */}
+      <section className="section">
+        <div className="container">
+          <div className="grid grid-2 services-split">
+            <div>
+              <span className="eyebrow">Our mission</span>
+              <p>
+                Squeegeez was founded on a commitment to providing exceptional window
+                and exterior cleaning services tailored to the unique needs of your property. Your home
+                or business is a significant investment, and we believe it deserves exceptional care.
+              </p>
+              <p>
+                Our approach is simple: arrive on time, communicate clearly, and deliver workmanship
+                that exceeds expectations. We take pride in leaving every property looking its absolute
+                best, so you can enjoy a cleaner, brighter experience without the hassle. We use
+                professional techniques and premium equipment to achieve outstanding results. Every
+                service is completed with precision, respect, and meticulous attention to detail.
+              </p>
+            </div>
+            <div>
+              {/* Replace with your team photo: drop it at public/our-story.jpg */}
+              <img
+                className="story-photo"
+                src="https://placehold.co/800x600/0f3a56/ffffff?text=Our+Team"
+                alt="The Squeegeez team"
+              />
             </div>
           </div>
         </div>

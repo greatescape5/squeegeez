@@ -9,8 +9,7 @@ export default function SiteFooter() {
           <div style={{ maxWidth: 320 }}>
             <h4>Squeegeez Window &amp; Exterior Care</h4>
             <p style={{ margin: 0 }}>
-              Professional window washing and exterior care for homes and businesses
-              across the Kootenays.
+              Professional window washing and exterior care for homes and businesses.
             </p>
           </div>
           <div>
