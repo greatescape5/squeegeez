@@ -14,7 +14,7 @@ export const revalidate = 60;
 
 const PHONE = '(250) 784-8588';
 const PHONE_HREF = 'tel:+12507848588';
-const SERVICE_NAMES = ['Residential Windows', 'Commercial Windows', 'Track and Screen Cleaning', 'Gutter Cleaning'];
+const SERVICE_NAMES = ['Residential windows', 'Commercial windows', 'Track and screen cleaning', 'Gutter cleaning'];
 
 export default async function ServicesPage() {
   const [folders, projects] = await Promise.all([getFolders(), getProjects()]);
@@ -33,7 +33,7 @@ export default async function ServicesPage() {
       <section className="hero" style={{ padding: '64px 0' }}>
         <div className="container center">
           <span className="tag">What We Offer</span>
-          <h1>Our Services</h1>
+          <h1>Our services</h1>
           <p className="lead">
             Everything your home or business exterior needs — done right, by people who care.
             Tap a service to see recent work.
@@ -47,7 +47,7 @@ export default async function ServicesPage() {
           <div className="grid grid-2 services-split">
             <div>
               <span className="eyebrow">Full List</span>
-              <h2>Everything We Do</h2>
+              <h2>Everything we do</h2>
               <div className="card list-card">
                 {SERVICE_NAMES.map((name) => (
                   <div key={name} className="service-row">
@@ -58,12 +58,11 @@ export default async function ServicesPage() {
               </div>
             </div>
             <div className="need-help">
-              <h2>Not Sure What You Need?</h2>
+              <h2>Not sure what you need?</h2>
               <p>
-                We&rsquo;ll figure it out together. Get in touch for a free, no-pressure estimate —
-                we serve Castlegar, Trail, Nelson, and the surrounding Kootenays.
+                We&rsquo;ll figure it out together. Get in touch for a free, no-pressure estimate.
               </p>
-              <Link href="/contact#get-in-touch" className="btn btn-primary">Get an Estimate</Link>
+              <Link href="/contact#get-in-touch" className="btn btn-primary">Get an estimate</Link>
               <a href={PHONE_HREF} className="btn btn-ghost">Call {PHONE}</a>
             </div>
           </div>
@@ -93,7 +92,7 @@ export default async function ServicesPage() {
                       </h3>
                       {f.description && <p>{f.description}</p>}
                       <span className="folder-count">
-                        {items.length} {items.length === 1 ? 'photo' : 'photos'} · View →
+                        {items.length} {items.length === 1 ? 'photo' : 'photos'} · view →
                       </span>
                     </div>
                   </Link>
@@ -113,11 +112,11 @@ export default async function ServicesPage() {
       <section className="section cta-final">
         <div className="container center">
           <span className="eyebrow">Let&rsquo;s Get Started</span>
-          <h2>Start Your Project With Confidence</h2>
+          <h2>Start your project with confidence</h2>
           <p>Contact Squeegeez today for a free estimate — no pressure, no obligations.</p>
           <div className="btn-row center">
-            <Link href="/contact#get-in-touch" className="btn btn-primary">Get an Estimate</Link>
-            <a href={PHONE_HREF} className="btn btn-ghost">Call Now</a>
+            <Link href="/contact#get-in-touch" className="btn btn-primary">Get an estimate</Link>
+            <a href={PHONE_HREF} className="btn btn-ghost">Call now</a>
           </div>
         </div>
       </section>

@@ -20,7 +20,7 @@ export default function SiteFooter() {
             <p style={{ margin: 0 }}><Link href="/contact">Contact</Link></p>
           </div>
           <div>
-            <h4>Service Areas</h4>
+            <h4>Service areas</h4>
             <p style={{ margin: 0 }}>
               Castlegar · Trail · Nelson · Fruitvale · Montrose<br />
               Rossland · Warfield · Slocan · Salmo · Creston<br />

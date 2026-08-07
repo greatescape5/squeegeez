@@ -3,11 +3,11 @@
 import { useState } from 'react';
 
 const SERVICES = [
-  'Residential Windows',
-  'Commercial Windows',
-  'Track and Screen Cleaning',
-  'Gutter Cleaning',
-  'Other / Not sure',
+  'Residential windows',
+  'Commercial windows',
+  'Track and screen cleaning',
+  'Gutter cleaning',
+  'Other / not sure',
 ];
 
 type Status = 'idle' | 'sending' | 'ok' | 'error';
@@ -93,7 +93,7 @@ export default function ContactForm() {
       </div>
 
       <button type="submit" className="btn btn-primary" disabled={status === 'sending'}>
-        {status === 'sending' ? 'Sending…' : 'Get an Estimate'}
+        {status === 'sending' ? 'Sending…' : 'Get an estimate'}
       </button>
       <p className="form-note" style={{ marginTop: 12 }}>
         We&rsquo;ll only use your details to respond to your request.

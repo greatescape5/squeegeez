@@ -18,7 +18,7 @@ export default function ContactPage() {
       <section className="hero" style={{ padding: '64px 0' }}>
         <div className="container center">
           <span className="tag">Get Started</span>
-          <h1>Contact Us</h1>
+          <h1>Contact us</h1>
           <p className="lead">
             Tell us what you need and we&rsquo;ll get back to you with a free estimate.
             Or call us at <a href={PHONE_HREF}>{PHONE}</a>.
@@ -31,9 +31,9 @@ export default function ContactPage() {
         <div className="container">
           <div className="grid grid-2 services-split">
             <div>
-              <span className="eyebrow">Our Story</span>
+              <span className="eyebrow">Our mission</span>
               <p>
-                Squeegeez was founded in Castlegar with a commitment to providing exceptional window
+                Squeegeez was founded on a commitment to providing exceptional window
                 and exterior cleaning services tailored to the unique needs of your property. Your home
                 or business is a significant investment, and we believe it deserves exceptional care.
               </p>
@@ -62,7 +62,7 @@ export default function ContactPage() {
         <div className="container">
           <div className="center" style={{ marginBottom: 40 }}>
             <span className="eyebrow">Reach Us Easily</span>
-            <h2>Get in Touch</h2>
+            <h2>Get in touch</h2>
           </div>
           <div className="grid grid-2 services-split">
             {/* Contact info card */}
@@ -74,7 +74,7 @@ export default function ContactPage() {
                   </svg>
                 </span>
                 <div>
-                  <strong>Call or Text</strong>
+                  <strong>Call or text</strong>
                   <a href={PHONE_HREF}>{PHONE}</a>
                 </div>
               </div>
@@ -86,7 +86,7 @@ export default function ContactPage() {
                   </svg>
                 </span>
                 <div>
-                  <strong>Email Us</strong>
+                  <strong>Email us</strong>
                   <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
                 </div>
               </div>
@@ -98,7 +98,7 @@ export default function ContactPage() {
                   </svg>
                 </span>
                 <div>
-                  <strong>Located In</strong>
+                  <strong>Located in</strong>
                   <span>Castlegar, BC</span>
                 </div>
               </div>

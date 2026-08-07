@@ -39,14 +39,14 @@ export const metadata: Metadata = {
     siteName: BUSINESS.name,
     locale: 'en_CA',
     type: 'website',
-    images: [{ url: '/logo.png', width: 512, height: 512, alt: BUSINESS.name }],
+    images: [{ url: '/logo.jpg', width: 512, height: 512, alt: BUSINESS.name }],
   },
   twitter: {
     card: 'summary',
     title: 'Squeegeez Window & Exterior Care',
     description:
       'Crystal clear windows, every time. Serving Castlegar and the Kootenays.',
-    images: ['/logo.png'],
+    images: ['/logo.jpg'],
   },
 };
 

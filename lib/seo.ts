@@ -46,8 +46,8 @@ export function localBusinessJsonLd() {
     url: SITE_URL,
     telephone: BUSINESS.phoneE164,
     email: BUSINESS.email,
-    image: `${SITE_URL}/logo.png`,
-    logo: `${SITE_URL}/logo.png`,
+    image: `${SITE_URL}/logo.jpg`,
+    logo: `${SITE_URL}/logo.jpg`,
     priceRange: '$$',
     address: {
       '@type': 'PostalAddress',

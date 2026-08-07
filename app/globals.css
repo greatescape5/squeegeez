@@ -91,6 +91,10 @@ a { color: var(--teal); text-decoration: none; }
 .nav-links a { color: var(--navy); font-weight: 600; }
 .nav-links a:hover { color: var(--teal); }
 .nav-cta { margin-left: 8px; }
+/* The estimate CTA is an orange button — keep its label white (overrides the
+   generic navy .nav-links a colour, which otherwise wins on specificity). */
+.nav-links a.nav-cta,
+.nav-links a.nav-cta:hover { color: #fff; }
 
 /* Hamburger button (mobile only) */
 .nav-toggle {

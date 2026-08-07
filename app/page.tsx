@@ -19,18 +19,21 @@ const PHONE_HREF = 'tel:+12507848588';
 export const revalidate = 60;
 
 const SERVICES = [
-  { title: 'Residential Windows', text: 'Interior and exterior cleaning for homes of all sizes.' },
-  { title: 'Commercial Windows', text: 'Storefronts on a reliable recurring schedule.' },
-  { title: 'Track and Screen Cleaning', text: 'Window tracks and screens cleared of built-up dirt and debris.' },
-  { title: 'Gutter Cleaning', text: 'Clear out debris before the Kootenay rains hit.' },
+  { title: 'Residential windows', text: 'Interior and exterior cleaning for homes of all sizes.' },
+  { title: 'Commercial windows', text: 'Storefronts on a reliable recurring schedule.' },
+  { title: 'Track and screen cleaning', text: 'Window tracks and screens cleared of built-up dirt and debris.' },
+  { title: 'Gutter cleaning', text: 'Clear out debris before the Kootenay rains hit.' },
 ];
 
 const WHY = [
-  { title: 'Licensed Business', text: 'WorkSafe BC compliant.' },
-  { title: 'Quality Results', text: '10+ years industry experience.' },
-  { title: 'Reliable & On Time', text: 'Flexible and reliable scheduling.' },
-  { title: 'Liability Insured', text: 'Protecting your job from start to finish.' },
+  { title: 'Licensed business', text: 'Trusted, professional service.' },
+  { title: 'Quality results', text: '10+ years industry experience.' },
+  { title: 'Reliable & on time', text: 'Flexible and reliable scheduling.' },
+  { title: 'Liability insured', text: 'Protecting your job from start to finish.' },
 ];
+
+// Safety credentials shown in the WorkSafeBC section.
+const SAFETY = ['Ladder safety', 'Fall protection', 'WHMIS', 'First Aid certified'];
 
 // Reviews are hidden until we have real ones — set to true to show the section again.
 const SHOW_REVIEWS = false;
@@ -54,14 +57,14 @@ export default async function HomePage() {
       <section className="hero home-hero">
         <div className="container center">
           <span className="tag">Castlegar, BC</span>
-          <h1>Crystal Clear Windows.<br />Every Time.</h1>
+          <h1>Proudly serving the West Kootenays</h1>
           <p className="lead">
             Professional window washing and exterior care for homes and businesses
             across the West Kootenays.
           </p>
           <div className="btn-row" style={{ marginTop: 8 }}>
-            <Link href="/contact#get-in-touch" className="btn btn-primary">Get an Estimate</Link>
-            <a href={PHONE_HREF} className="btn btn-outline">Call Now</a>
+            <Link href="/contact#get-in-touch" className="btn btn-primary">Get an estimate</Link>
+            <a href={PHONE_HREF} className="btn btn-outline">Call now</a>
           </div>
         </div>
       </section>
@@ -71,7 +74,7 @@ export default async function HomePage() {
         <div className="container">
           <div className="center" style={{ marginBottom: 40 }}>
             <span className="eyebrow">What We Do</span>
-            <h2>Our Services</h2>
+            <h2>Our services</h2>
           </div>
           <div className="grid grid-4">
             {SERVICES.map((s) => (
@@ -91,7 +94,7 @@ export default async function HomePage() {
           <div className="container">
             <div className="center" style={{ marginBottom: 40 }}>
               <span className="eyebrow">See It For Yourself</span>
-              <h2>Our Work in Action</h2>
+              <h2>Our work in action</h2>
               <p className="lead">Drag the slider to see the difference a professional clean makes.</p>
             </div>
             <div style={{ display: 'grid', gap: 40 }}>
@@ -113,7 +116,7 @@ export default async function HomePage() {
         <div className="container">
           <div className="center" style={{ marginBottom: 40 }}>
             <span className="eyebrow">See the Difference</span>
-            <h2>Our Recent Projects</h2>
+            <h2>Our recent projects</h2>
           </div>
 
           {highlights.length > 0 ? (
@@ -138,7 +141,7 @@ export default async function HomePage() {
           )}
 
           <div className="center" style={{ marginTop: 34 }}>
-            <Link href="/services" className="btn btn-ghost">View All Services</Link>
+            <Link href="/services" className="btn btn-ghost">View all services</Link>
           </div>
         </div>
       </section>
@@ -148,7 +151,7 @@ export default async function HomePage() {
         <div className="container">
           <div className="center" style={{ marginBottom: 40 }}>
             <span className="eyebrow">Why Us</span>
-            <h2>Why Choose Squeegeez?</h2>
+            <h2>Why choose Squeegeez?</h2>
             <p className="lead">
               Every project is completed with care, precision, and respect for your property.
             </p>
@@ -160,6 +163,18 @@ export default async function HomePage() {
                 <p>{w.text}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* WORKSAFE BC */}
+      <section className="section tint-blue">
+        <div className="container center">
+          <span className="eyebrow">Health &amp; Safety</span>
+          <h2>WorkSafeBC compliant</h2>
+          <p className="lead">Committed to safe work practices.</p>
+          <div className="areas" style={{ marginTop: 26 }}>
+            {SAFETY.map((s) => <span key={s}>{s}</span>)}
           </div>
         </div>
       </section>
@@ -189,7 +204,7 @@ export default async function HomePage() {
       <section className="section tint-teal">
         <div className="container center">
           <span className="eyebrow">We Come To You</span>
-          <h2 style={{ marginBottom: 26 }}>Areas We Service</h2>
+          <h2 style={{ marginBottom: 26 }}>Areas we service</h2>
           <div className="areas">
             {AREAS.map((a) => <span key={a}>{a}</span>)}
           </div>
@@ -200,10 +215,10 @@ export default async function HomePage() {
       <section className="section grad">
         <div className="container">
           <div className="cta-band">
-            <h2>Ready to Refresh Your View?</h2>
+            <h2>Ready to refresh your view?</h2>
             <p>Serving Castlegar, Trail, Nelson and the surrounding Kootenays. Contact us for a free estimate today.</p>
             <div className="btn-row center">
-              <Link href="/contact#get-in-touch" className="btn btn-primary">Get an Estimate</Link>
+              <Link href="/contact#get-in-touch" className="btn btn-primary">Get an estimate</Link>
               <a href={PHONE_HREF} className="btn btn-ghost">Call {PHONE}</a>
             </div>
           </div>
