@@ -135,6 +135,14 @@ a { color: var(--teal); text-decoration: none; }
   padding-bottom: 72px;
 }
 .hero .tag { color: var(--body); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.8rem; }
+/* Hero subheading (sits under the main H1) */
+.home-hero .hero-subtitle {
+  font-size: clamp(1.15rem, 2.6vw, 1.7rem);
+  font-weight: 600;
+  color: var(--teal);
+  letter-spacing: -0.01em;
+  margin: 2px 0 14px;
+}
 
 /* Accent bar echoing the logo stripes */
 .stripe { height: 6px; display: flex; }

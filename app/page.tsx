@@ -32,8 +32,13 @@ const WHY = [
   { title: 'Liability insured', text: 'Protecting your job from start to finish.' },
 ];
 
-// Safety credentials shown in the WorkSafeBC section.
-const SAFETY = ['Ladder safety', 'Fall protection', 'WHMIS', 'First Aid certified'];
+// Safety credentials shown in the WorkSafeBC section (edit the copy freely).
+const SAFETY = [
+  { title: 'Ladder safety', text: 'Trained in safe ladder setup and use on every property.' },
+  { title: 'Fall protection', text: 'Proper gear and procedures whenever we work at height.' },
+  { title: 'WHMIS', text: 'Certified in the safe handling of workplace materials.' },
+  { title: 'First Aid certified', text: 'Ready to respond quickly if anything comes up on the job.' },
+];
 
 // Reviews are hidden until we have real ones — set to true to show the section again.
 const SHOW_REVIEWS = false;
@@ -57,7 +62,8 @@ export default async function HomePage() {
       <section className="hero home-hero">
         <div className="container center">
           <span className="tag">Castlegar, BC</span>
-          <h1>Proudly serving the West Kootenays</h1>
+          <h1>Crystal clear windows.<br />Every time.</h1>
+          <h2 className="hero-subtitle">Proudly serving the West Kootenays</h2>
           <p className="lead">
             Professional window washing and exterior care for homes and businesses
             across the West Kootenays.
@@ -169,12 +175,26 @@ export default async function HomePage() {
 
       {/* WORKSAFE BC */}
       <section className="section tint-blue">
-        <div className="container center">
-          <span className="eyebrow">Health &amp; Safety</span>
-          <h2>WorkSafeBC compliant</h2>
-          <p className="lead">Committed to safe work practices.</p>
-          <div className="areas" style={{ marginTop: 26 }}>
-            {SAFETY.map((s) => <span key={s}>{s}</span>)}
+        <div className="container">
+          <div className="grid grid-2 services-split">
+            {/* Left column — WorkSafeBC statement */}
+            <div className="card">
+              <span className="eyebrow">Health &amp; Safety</span>
+              <h2>WorkSafeBC compliant</h2>
+              <p>
+                Committed to safe work practices. We follow WorkSafeBC standards on every
+                job to protect our team and your property.
+              </p>
+            </div>
+            {/* Right column — safety credentials, stacked vertically */}
+            <div style={{ display: 'grid', gap: 20 }}>
+              {SAFETY.map((s) => (
+                <div key={s.title} className="card">
+                  <h3>{s.title}</h3>
+                  <p>{s.text}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
