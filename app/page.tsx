@@ -163,7 +163,11 @@ export default async function HomePage() {
             <span className="eyebrow">Why Us</span>
             <h2>Why choose Squeegeez?</h2>
             <p className="lead">
-              Every project is completed with care, precision, and respect for your property.
+              With 10+ years of hands-on experience and a deep understanding of professional
+              window and exterior cleaning, we bring the knowledge, precision, and attention to
+              detail that exceptional results require. We take pride in doing the job
+              properly—from the products and techniques we use to the way we treat your
+              property—so you can feel confident your home or business is in capable hands.
             </p>
           </div>
           <div className="grid grid-4">
