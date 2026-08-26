@@ -87,8 +87,11 @@ saves the lead even if email isn't configured.
 ## Current values / notes
 - Phone: **(250) 784-8588** · Contact email: **contact@squeegeez.ca**
 - Reviews and the home project-gallery are **hidden** (`SHOW_REVIEWS` / `SHOW_PROJECTS = false` in `app/page.tsx`).
-- The DB "Pressure Washing" folder can be renamed to "Track & screen cleaning" in the admin so the
-  `/services` gallery matches the rest of the site.
+- **Copy style:** visible site text uses **"&"** instead of "and". SEO meta descriptions + JSON-LD
+  schema (in page metadata, `app/layout.tsx`, `lib/seo.ts`) intentionally keep prose "and".
+- The **`/services` folder cards** pull their name + description from the database, so any "and"
+  there is edited in **admin → Service Folders**, not in code. (Also rename the "Pressure Washing"
+  folder to "Track & screen cleaning" there so the gallery matches the rest of the site.)
 
 ## Local development
 ```
