@@ -206,6 +206,13 @@ a { color: var(--teal); text-decoration: none; }
 .need-help .btn-ghost { background: transparent; color: #fff; border-color: rgba(255, 255, 255, 0.5); }
 .need-help .btn-ghost:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
 
+/* About page — team photo */
+.about-photo {
+  width: 100%; max-width: 440px; margin: 0 auto; display: block;
+  border-radius: var(--radius); box-shadow: var(--shadow);
+  aspect-ratio: 4 / 5; object-fit: cover; object-position: center;
+}
+
 /* Contact page — Our Story */
 .story-photo {
   width: 100%; display: block; border-radius: var(--radius); box-shadow: var(--shadow);

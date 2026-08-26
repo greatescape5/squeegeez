@@ -56,13 +56,19 @@ export default function AboutPage() {
       {/* THE PEOPLE BEHIND SQUEEGEEZ */}
       <section className="section tint-teal">
         <div className="container">
-          <div style={{ maxWidth: 760, margin: '0 auto' }}>
-            <h2>The People Behind Squeegeez</h2>
-            <p style={{ marginBottom: 0 }}>
-              Squeegeez is a small, locally owned business built around a genuine pride in the work
-              we do. We value getting to know our customers, understanding their properties, and
-              building relationships that last beyond a single service.
-            </p>
+          <div className="grid grid-2 services-split" style={{ alignItems: 'center' }}>
+            <div>
+              <h2>The People Behind Squeegeez</h2>
+              <p style={{ marginBottom: 0 }}>
+                Squeegeez is a small, locally owned business built around a genuine pride in the work
+                we do. We value getting to know our customers, understanding their properties, and
+                building relationships that last beyond a single service.
+              </p>
+            </div>
+            <div>
+              {/* Add your photo at public/about-team.jpg */}
+              <img className="about-photo" src="/about-team.jpg" alt="The team behind Squeegeez" />
+            </div>
           </div>
         </div>
       </section>
