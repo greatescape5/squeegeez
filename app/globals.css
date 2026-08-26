@@ -365,6 +365,15 @@ a { color: var(--teal); text-decoration: none; }
   border-top: 1px solid rgba(255,255,255,0.12); margin-top: 30px; padding-top: 18px;
   display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 0.88rem;
 }
+/* Footer social icons */
+.footer-social { display: flex; gap: 12px; margin-top: 16px; }
+.footer-social a {
+  display: inline-grid; place-items: center; width: 38px; height: 38px;
+  border-radius: 8px; color: #cfe0e9; background: rgba(255, 255, 255, 0.08);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.footer-social a:hover { background: var(--teal); color: #fff; }
+
 /* Hidden admin link — a faint clickable period */
 .admin-dot { color: var(--navy-deep); opacity: 0.35; padding: 0 4px; cursor: pointer; }
 .admin-dot:hover { opacity: 0.6; }
