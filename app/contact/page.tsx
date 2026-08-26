@@ -19,11 +19,14 @@ export default function ContactPage() {
       <section className="hero" style={{ padding: '64px 0' }}>
         <div className="container center">
           <span className="tag">Get Started</span>
-          <h1>Contact us</h1>
+          <h1>Let&rsquo;s talk about your property</h1>
           <p className="lead">
-            Tell us what you need and we&rsquo;ll get back to you with a free estimate.
-            Or call us at <a href={PHONE_HREF}>{PHONE}</a>.
+            The easiest way to get a free estimate is to give us a call. We&rsquo;ll take the time
+            to understand what you&rsquo;re looking for and discuss the best way to move forward.
           </p>
+          <div className="btn-row center" style={{ marginTop: 8 }}>
+            <a href={PHONE_HREF} className="btn btn-primary">Call us</a>
+          </div>
         </div>
       </section>
 
