@@ -265,7 +265,7 @@ export default async function HomePage() {
         <div className="container">
           <div className="cta-band">
             <h2>Ready to refresh your view?</h2>
-            <p>Serving Castlegar, Trail, Nelson and the surrounding Kootenays. Contact us for a free estimate today.</p>
+            <p>Give your property the care it deserves. Get in touch with Squeegeez today for a free, no-obligation estimate.</p>
             <div className="btn-row center">
               <Link href="/contact#get-in-touch" className="btn btn-primary">Get an estimate</Link>
               <a href={PHONE_HREF} className="btn btn-ghost">Call {PHONE}</a>
