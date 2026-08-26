@@ -7,9 +7,9 @@ export default function SiteFooter() {
       <div className="container">
         <div className="cols">
           <div style={{ maxWidth: 320 }}>
-            <h4>Squeegeez Window &amp; Exterior Care</h4>
+            <h4>Squeegeez Window Exterior Care</h4>
             <p style={{ margin: 0 }}>
-              Professional window washing and exterior care for homes and businesses.
+              A higher standard for your property
             </p>
           </div>
           <div>
@@ -33,7 +33,7 @@ export default function SiteFooter() {
               Hidden admin link: this faint period goes to the admin login. */}
             <Link href="/admin" className="admin-dot" aria-label="Admin">.</Link>
           </span>
-          <span>Serving the Kootenays, BC</span>
+          <span>Serving the West Kootenays, BC</span>
         </div>
 
         <div className="footer-credit">
