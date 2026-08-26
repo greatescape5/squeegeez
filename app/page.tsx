@@ -200,6 +200,12 @@ export default async function HomePage() {
       <section className="section tint-cream">
         <div className="container">
           <div className="worksafe-band">
+            <div className="worksafe-logo">
+              <span className="wsbc" role="img" aria-label="WorkSafeBC">
+                <span className="wsbc-dark">WORK<span>SAFE</span></span>
+                <span className="wsbc-bc">BC</span>
+              </span>
+            </div>
             <span className="eyebrow">Certified &amp; Compliant</span>
             <h2>WorkSafeBC compliant</h2>
             <p>
