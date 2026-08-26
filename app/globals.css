@@ -234,6 +234,16 @@ a { color: var(--teal); text-decoration: none; }
 .ci-row strong { display: block; color: var(--navy); font-size: 1.05rem; margin-bottom: 2px; }
 .ci-row a, .ci-row span { color: var(--body); font-size: 0.98rem; }
 
+/* Follow us — social icons on the contact card (light background) */
+.ci-follow { border-top: 1px solid var(--line); padding-top: 18px; margin-top: 4px; }
+.ci-follow > strong { display: block; color: var(--navy); margin-bottom: 10px; }
+.contact-social { display: flex; gap: 12px; }
+.contact-social a {
+  display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 8px;
+  color: var(--navy); background: #eef4f6; transition: background 0.15s ease, color 0.15s ease;
+}
+.contact-social a:hover { background: var(--teal); color: #fff; }
+
 /* Offset for sticky header when jumping to an anchor */
 .anchor-offset { scroll-margin-top: 88px; }
 

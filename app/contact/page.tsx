@@ -1,5 +1,6 @@
 import ContactForm from './ContactForm';
 import HashScroll from '@/components/HashScroll';
+import SocialLinks from '@/components/SocialLinks';
 
 export const metadata = {
   title: 'Contact Us — Free Estimate',
@@ -70,6 +71,10 @@ export default function ContactPage() {
                   <strong>Located in</strong>
                   <span>Castlegar, BC</span>
                 </div>
+              </div>
+              <div className="ci-follow">
+                <strong>Follow us</strong>
+                <SocialLinks className="contact-social" />
               </div>
             </div>
 
