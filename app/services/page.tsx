@@ -14,7 +14,7 @@ export const revalidate = 60;
 
 const PHONE = '(250) 784-8588';
 const PHONE_HREF = 'tel:+12507848588';
-const SERVICE_NAMES = ['Residential windows', 'Commercial windows', 'Track and screen cleaning', 'Gutter cleaning'];
+const SERVICE_NAMES = ['Residential windows', 'Commercial windows', 'Track & screen cleaning', 'Gutter cleaning'];
 
 export default async function ServicesPage() {
   const [folders, projects] = await Promise.all([getFolders(), getProjects()]);
