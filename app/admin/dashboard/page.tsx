@@ -21,11 +21,20 @@ function slugify(s: string) {
   return s.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 }
 
+const TABS = [
+  { id: 'folders', label: 'Service Folders' },
+  { id: 'comparisons', label: 'Before & After' },
+  { id: 'projects', label: 'Manage Projects' },
+  { id: 'leads', label: 'Leads' },
+] as const;
+type TabId = (typeof TABS)[number]['id'];
+
 export default function DashboardPage() {
   const router = useRouter();
   const supabase = browserSupabase();
 
   const [ready, setReady] = useState(false);
+  const [tab, setTab] = useState<TabId>('folders');
   const [folders, setFolders] = useState<Folder[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
   const [leads, setLeads] = useState<Lead[]>([]);
@@ -285,12 +294,26 @@ export default function DashboardPage() {
   return (
     <section className="section">
       <div className="container">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 30 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
           <h1 style={{ fontSize: '1.9rem', margin: 0 }}>Admin Dashboard</h1>
           <button className="btn btn-ghost" onClick={handleLogout}>Log out</button>
         </div>
 
+        <div className="admin-tabs">
+          {TABS.map((t) => (
+            <button
+              key={t.id}
+              type="button"
+              className={`admin-tab ${tab === t.id ? 'active' : ''}`}
+              onClick={() => setTab(t.id)}
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
+
         {/* ---------- FOLDERS ---------- */}
+        {tab === 'folders' && (
         <div className="card" style={{ marginBottom: 40 }}>
           <h2 style={{ fontSize: '1.3rem' }}>Service Folders</h2>
           <p className="form-note">These are the services shown on the site. Each project photo goes into one folder.</p>
@@ -372,8 +395,10 @@ export default function DashboardPage() {
             <button type="submit" className="btn btn-primary">Add Folder</button>
           </form>
         </div>
+        )}
 
         {/* ---------- BEFORE / AFTER SHOWCASE ---------- */}
+        {tab === 'comparisons' && (
         <div className="card" style={{ marginBottom: 40 }}>
           <h2 style={{ fontSize: '1.3rem' }}>Before &amp; After Showcase</h2>
           <p className="form-note">These appear in the &ldquo;Our Work in Action&rdquo; slider on the home page.</p>
@@ -448,8 +473,11 @@ export default function DashboardPage() {
             </button>
           </form>
         </div>
+        )}
 
-        {/* ---------- ADD PROJECT ---------- */}
+        {/* ---------- MANAGE PROJECTS ---------- */}
+        {tab === 'projects' && (
+        <>
         <div className="card" style={{ marginBottom: 40 }}>
           <h2 style={{ fontSize: '1.3rem' }}>Add a Project Photo</h2>
           {msg && <div className={`alert ${msg.startsWith('Error') ? 'err' : 'ok'}`}>{msg}</div>}
@@ -507,7 +535,12 @@ export default function DashboardPage() {
           ))}
         </div>
 
+        </>
+        )}
+
         {/* ---------- LEADS ---------- */}
+        {tab === 'leads' && (
+        <>
         <h2 style={{ fontSize: '1.3rem' }}>Leads ({leads.length})</h2>
         {leads.length === 0 ? (
           <p>No leads yet.</p>
@@ -540,6 +573,8 @@ export default function DashboardPage() {
               </tbody>
             </table>
           </div>
+        )}
+        </>
         )}
       </div>
     </section>
