@@ -39,7 +39,8 @@ Run these SQL files in **SQL Editor** (in order) for a fresh project:
 After running, Settings → API → copy the **Project URL** + **anon public key**.
 
 ## Images (in `public/` unless noted)
-- `public/logo.jpg` — header logo (also used for OG/Twitter share image).
+- `public/logo-b11.png` — header/nav logo.
+- `public/logo.jpg` — OG/Twitter share image (referenced in `app/layout.tsx` + `lib/seo.ts`).
 - `app/icon.png` — favicon. Browsers cache it hard — hard-refresh (Ctrl+F5).
 - `public/about-team.png` — team photo on the About page.
 - `public/whmis.svg` + `public/first-aid.jpg` — certification logos on the About strip.

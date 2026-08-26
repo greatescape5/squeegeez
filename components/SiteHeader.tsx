@@ -16,7 +16,7 @@ export default function SiteHeader() {
       <div className="container nav">
         <Link href="/" className="brand" onClick={close}>
           <Image
-            src="/logo.jpg"
+            src="/logo-b11.png"
             alt="Squeegeez Window & Exterior Care"
             width={55}
             height={55}
