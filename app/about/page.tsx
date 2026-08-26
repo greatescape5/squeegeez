@@ -66,8 +66,8 @@ export default function AboutPage() {
               </p>
             </div>
             <div>
-              {/* Add your photo at public/about-team.jpg */}
-              <img className="about-photo" src="/about-team.jpg" alt="The team behind Squeegeez" />
+              {/* Photo at public/about-team.png */}
+              <img className="about-photo" src="/about-team.png" alt="The team behind Squeegeez" />
             </div>
           </div>
         </div>
