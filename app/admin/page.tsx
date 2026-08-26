@@ -43,7 +43,7 @@ export default function AdminLoginPage() {
         <div className="form-wrap" style={{ maxWidth: 420 }}>
           <h1 style={{ fontSize: '1.8rem' }}>Admin Login</h1>
           <p className="form-note" style={{ marginBottom: 24 }}>
-            Sign in to manage gallery projects and view leads.
+            Sign in to manage gallery projects &amp; view leads.
           </p>
           <form onSubmit={handleLogin}>
             {error && <div className="alert err">{error}</div>}

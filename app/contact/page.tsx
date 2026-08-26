@@ -22,7 +22,7 @@ export default function ContactPage() {
           <h1>Let&rsquo;s talk about your property</h1>
           <p className="lead">
             The easiest way to get a free estimate is to give us a call. We&rsquo;ll take the time
-            to understand what you&rsquo;re looking for and discuss the best way to move forward.
+            to understand what you&rsquo;re looking for &amp; discuss the best way to move forward.
           </p>
           <div className="btn-row center" style={{ marginTop: 8 }}>
             <a href={PHONE_HREF} className="btn btn-primary">Call us</a>

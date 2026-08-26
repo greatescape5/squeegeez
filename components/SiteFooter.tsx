@@ -40,7 +40,7 @@ export default function SiteFooter() {
         </div>
 
         <div className="footer-credit">
-          Website designed and managed by{' '}
+          Website designed &amp; managed by{' '}
           <a
             href="https://greatescapewebservices.com"
             target="_blank"

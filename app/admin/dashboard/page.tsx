@@ -190,7 +190,7 @@ export default function DashboardPage() {
     setCSaving(true);
     setCMsg('');
     try {
-      if (!beforeFile || !afterFile) throw new Error('Please choose both a before and an after photo.');
+      if (!beforeFile || !afterFile) throw new Error('Please choose both a before & an after photo.');
       const [beforeUrl, afterUrl] = [await uploadImage(beforeFile), await uploadImage(afterFile)];
       const nextSort = comparisons.length ? Math.max(...comparisons.map((c) => c.sort_order)) + 1 : 1;
       const { error } = await supabase.from('comparisons').insert([{
