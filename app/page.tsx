@@ -32,8 +32,9 @@ const WHY = [
   { title: 'Liability insured', text: 'Protecting your job from start to finish.' },
 ];
 
-// Safety credentials shown in the WorkSafeBC section (edit the copy freely).
+// Safety credentials shown in the Health & Safety section (edit the copy freely).
 const SAFETY = [
+  { title: 'WorkSafeBC compliant', text: 'We follow WorkSafeBC standards on every job.' },
   { title: 'Ladder safety', text: 'Trained in safe ladder setup and use on every property.' },
   { title: 'Fall protection', text: 'Proper gear and procedures whenever we work at height.' },
   { title: 'WHMIS', text: 'Certified in the safe handling of workplace materials.' },
@@ -181,28 +182,27 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* WORKSAFE BC */}
+      {/* HEALTH & SAFETY */}
       <section className="section tint-blue">
         <div className="container">
-          <div className="grid grid-2 services-split">
-            {/* Left column — WorkSafeBC statement */}
-            <div className="card">
-              <span className="eyebrow">Health &amp; Safety</span>
-              <h2>WorkSafeBC compliant</h2>
-              <p>
-                Committed to safe work practices. We follow WorkSafeBC standards on every
-                job to protect our team and your property.
-              </p>
-            </div>
-            {/* Right column — safety credentials, stacked vertically */}
-            <div style={{ display: 'grid', gap: 20 }}>
-              {SAFETY.map((s) => (
-                <div key={s.title} className="card">
-                  <h3>{s.title}</h3>
-                  <p>{s.text}</p>
-                </div>
-              ))}
-            </div>
+          <div className="center" style={{ marginBottom: 40 }}>
+            <span className="eyebrow">Health &amp; Safety</span>
+            <h2>Safety comes standard</h2>
+            <p className="lead">
+              Every job presents its own considerations, from working at height and navigating
+              delicate surfaces to accessing hard-to-reach areas. We assess each property, use the
+              right equipment and techniques, and put the appropriate safety measures in place
+              before we begin. This allows us to deliver great results while protecting your
+              property and everyone involved.
+            </p>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 24 }}>
+            {SAFETY.map((s) => (
+              <div key={s.title} className="card">
+                <h3>{s.title}</h3>
+                <p>{s.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
