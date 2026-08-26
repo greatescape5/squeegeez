@@ -17,41 +17,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* CERTIFICATIONS STRIP */}
-      <section className="section tint-cream" style={{ paddingTop: 30, paddingBottom: 30 }}>
-        <div className="container">
-          <div className="cert-strip">
-            <div className="cert-item">
-              <div className="cert-mark">
-                <span className="wsbc" role="img" aria-label="WorkSafeBC">
-                  <span className="wsbc-dark">WORK<span>SAFE</span></span>
-                  <span className="wsbc-bc">BC</span>
-                </span>
-              </div>
-              <span>Compliant</span>
-            </div>
-            <div className="cert-item">
-              <div className="cert-mark">
-                <svg width="54" height="54" viewBox="0 0 54 54" aria-hidden="true">
-                  <rect x="10" y="10" width="34" height="34" rx="4" transform="rotate(45 27 27)" fill="#fff" stroke="#d81e1e" strokeWidth="4" />
-                  <text x="27" y="36" textAnchor="middle" fontSize="26" fontWeight="700" fill="#111">!</text>
-                </svg>
-              </div>
-              <span>WHMIS certified</span>
-            </div>
-            <div className="cert-item">
-              <div className="cert-mark">
-                <svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true">
-                  <rect x="4" y="4" width="44" height="44" rx="8" fill="#1a9e57" />
-                  <path d="M26 14v24M14 26h24" stroke="#fff" strokeWidth="6" strokeLinecap="round" />
-                </svg>
-              </div>
-              <span>First Aid certified</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ABOUT — photo on top, stacked story */}
       <section className="section tint-blue">
         <div className="container">
@@ -89,6 +54,20 @@ export default function AboutPage() {
                 reputation one customer at a time.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CERTIFICATIONS STRIP */}
+      <section className="section tint-cream" style={{ paddingTop: 30, paddingBottom: 30 }}>
+        <div className="container">
+          <div className="cert-strip">
+            <span className="wsbc" role="img" aria-label="WorkSafeBC">
+              <span className="wsbc-dark">WORK<span>SAFE</span></span>
+              <span className="wsbc-bc">BC</span>
+            </span>
+            <img className="cert-logo" src="/whmis.svg" alt="WHMIS" />
+            <img className="cert-logo" src="/first-aid.jpg" alt="Certified First-Aid Trained" />
           </div>
         </div>
       </section>
