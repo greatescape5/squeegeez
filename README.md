@@ -1,53 +1,95 @@
 # Squeegeez Window & Exterior Care — website
 
-Next.js (App Router) + Supabase + Resend, deployed on Vercel.
+Next.js 14 (App Router) + Supabase (DB + Storage + Auth) + Resend (email) + GA4, deployed on Vercel.
+Domain: **squeegeez.ca** (GoDaddy DNS → Vercel).
 
 ## Pages
-- `/` — Home (hero, services, project highlights, reviews, service areas, CTA)
-- `/projects` — Gallery pulled from the Supabase `projects` table
-- `/contact` — Lead form → saves to Supabase `leads` + emails (once Resend is set up)
-- `/admin` — hidden admin login (added after launch; the faint “.” in the footer links here)
+- `/` — **Home**: ~75vh hero, services grid, "Our work in action" before/after slider,
+  "Why choose Squeegeez", safety + WorkSafeBC section, service areas, closing CTA.
+  (Reviews and the project-highlights gallery are built but hidden — see `SHOW_REVIEWS` /
+  `SHOW_PROJECTS` in `app/page.tsx`.)
+- `/services` — grid of **service folders** (from the DB) + "Everything we do" list; each folder
+  links to `/services/[slug]` showing that service's photos. (`/projects` 301-redirects here.)
+- `/about` — **About Squeegeez**: two-column story (team photo + People / Mission / Local), a
+  certifications strip (WorkSafeBC · WHMIS · First-Aid), and a CTA.
+- `/contact` — hero with a **Call us** button, then **Get in touch**: contact-info card
+  (call/text, email, location, social links) beside the lead form. "Get an estimate" buttons
+  deep-link to `/contact#get-in-touch` and auto-scroll to the form.
+- `/admin` — hidden login (the faint “.” in the footer links here).
+- `/admin/dashboard` — management area (see below).
 
-## One-time setup (in order)
+## Admin (`/admin`)
+Log in with a Supabase Auth user (create one in Supabase → Authentication → Users). The dashboard
+is organized into **tabs**:
+- **Service Folders** — add / edit / hide / delete, and add photos to each folder.
+- **Before & After** — add / edit (replace images + caption) / hide / delete the home-page sliders.
+- **Manage Projects** — add a project photo; hide / delete existing ones.
+- **Leads** — every contact-form submission (name, email, phone, address, service, message).
 
-### 1. Supabase (database)
-1. Create a Supabase project.
-2. Open **SQL Editor → New query**, paste all of `supabase-schema.sql`, click **Run**.
-3. Go to **Settings → API** and copy the **Project URL** and the **anon public key**.
+## Database (Supabase)
+Run these SQL files in **SQL Editor** (in order) for a fresh project:
+1. `supabase-schema.sql` — `projects` + `leads` tables, RLS, `gallery` storage bucket
+2. `supabase-folders-migration.sql` — `folders` table + `projects.folder_id`
+3. `supabase-comparisons-migration.sql` — `comparisons` (before/after) table
+4. `supabase-add-lead-address.sql` — adds `leads.address`
 
-### 2. Add these two images (do this before deploy)
-- `public/logo.png`  — the round Squeegeez logo (shows in the header).
-- `app/icon.png`     — same logo (or a square crop) — this becomes the browser-tab favicon.
-  Browsers cache favicons hard, so hard-refresh (Ctrl+F5) to see it after deploy.
+> A single consolidated schema (all four in one file) lives at `../site-template/supabase-schema.sql`
+> for cloning into a brand-new site.
 
-### 3. Vercel (hosting)
-1. Import the GitHub repo as a new project.
-2. **Framework Preset must be `Next.js`** (if it says “Other”, every route 404s).
-3. Add **Environment Variables**, then **Redeploy** (they don’t apply until you redeploy):
+After running, Settings → API → copy the **Project URL** + **anon public key**.
+
+## Images (in `public/` unless noted)
+- `public/logo.jpg` — header logo (also used for OG/Twitter share image).
+- `app/icon.png` — favicon. Browsers cache it hard — hard-refresh (Ctrl+F5).
+- `public/about-team.png` — team photo on the About page.
+- `public/whmis.svg` + `public/first-aid.jpg` — certification logos on the About strip.
+
+## Vercel (hosting)
+1. Import the GitHub repo.
+2. **Framework Preset must be `Next.js`** (if it says “Other”, every route 404s though the build passes).
+3. Environment Variables, then **Redeploy** (they don’t apply until you redeploy):
    ```
    NEXT_PUBLIC_SUPABASE_URL       = your project URL
    NEXT_PUBLIC_SUPABASE_ANON_KEY  = your anon public key
    ```
-4. Later, for email (see below), also add:
+4. Email (Resend) vars — can be added later:
    ```
    RESEND_API_KEY   = your Resend API key
-   LEAD_TO_EMAIL    = tyler@greatescapewebservices.com   (or the client's inbox)
-   LEAD_FROM_EMAIL  = leads@yourdomain.com               (must be a verified domain in Resend)
+   LEAD_TO_EMAIL    = where leads are received (e.g. tyler@greatescapewebservices.com)
+   LEAD_FROM_EMAIL  = a sender on the verified domain (currently noreply@squeegeez.ca)
+   LEAD_REPLY_TO    = inbox for customer replies (optional; defaults to contact@squeegeez.ca in code)
    ```
+5. Domain (Settings → Domains). At GoDaddy set only: apex `A @ → 76.76.21.21` and
+   `www CNAME → cname.vercel-dns.com`. Leave email DNS (MX/SPF/DKIM/autodiscover) untouched.
 
-### 4. Google Analytics — already wired
-The GA4 ID `G-J9DM83X36E` is hardcoded in `components/Analytics.tsx`. Nothing else to do.
+## Analytics
+GA4 id `G-J9DM83X36E` is hardcoded in `components/Analytics.tsx` (with route tracking). Nothing else to do.
 
-### 5. Resend (form emails) — can be last
-1. Sign up at resend.com, verify the client's domain (add the DNS records it shows).
-2. Create an API key.
-3. Add the three env vars above in Vercel, then redeploy.
-The form **saves the lead even if email isn't set up yet** — email is best-effort.
+## Resend (form emails)
+Domain verified in Resend. `/api/lead` saves the lead first (best-effort email), then sends **two**
+emails: a notification to `LEAD_TO_EMAIL` (Reply-To = the customer) and a confirmation to the customer
+(Reply-To = `LEAD_REPLY_TO`). Failures / missing vars are logged to Vercel runtime logs. The form still
+saves the lead even if email isn't configured.
 
-## Things to update in the code
-- **Phone number** — set to `(250) 784-8588` in `app/page.tsx` and `app/contact/page.tsx` (search `PHONE` to change it).
+## Where content lives (to edit copy in code)
+- `app/page.tsx` — home hero, `SERVICES`, `WHY`, `SAFETY`, `AREAS`, `REVIEWS`, `SHOW_REVIEWS` /
+  `SHOW_PROJECTS`, `PHONE` / `PHONE_HREF`.
+- `app/about/page.tsx` — About story text + certifications strip.
+- `app/services/page.tsx` — `SERVICE_NAMES`, headings, phone.
+- `app/contact/page.tsx` — hero copy, contact info (`PHONE` / `EMAIL`).
+- `components/SocialLinks.tsx` — Facebook / Instagram / TikTok URLs (one place, used by footer + contact).
+- `components/SiteHeader.tsx` / `SiteFooter.tsx` — nav, footer, service areas, Great Escape credit.
+- `lib/seo.ts` — domain + business details + JSON-LD schema.
+- `components/Analytics.tsx` — GA4 id.
+- Services, safety, reviews, and areas are hardcoded; the gallery/folders/before-after come from the DB (edit in admin).
 
-## Local development (optional)
+## Current values / notes
+- Phone: **(250) 784-8588** · Contact email: **contact@squeegeez.ca**
+- Reviews and the home project-gallery are **hidden** (`SHOW_REVIEWS` / `SHOW_PROJECTS = false` in `app/page.tsx`).
+- The DB "Pressure Washing" folder can be renamed to "Track & screen cleaning" in the admin so the
+  `/services` gallery matches the rest of the site.
+
+## Local development
 ```
 npm install
 cp .env.local.example .env.local   # then fill in your Supabase keys
@@ -62,8 +104,8 @@ cd squeegeez
 npm install
 npm run dev          # runs with placeholder data if there's no .env.local
 ```
-`npm run build` now succeeds even without Supabase keys (handy for CI), so you can
-verify a build anywhere. For real data locally, add `.env.local` as above.
+`npm run build` succeeds even without Supabase keys (handy for CI), so you can verify a build
+anywhere. For real data locally, add `.env.local` as above.
 
 ## SEO
 Search-engine essentials are built into the app (no plugin needed):
@@ -84,5 +126,5 @@ NEXT_PUBLIC_BING_SITE_VERIFICATION      = <code from Bing Webmaster Tools>
 - `docs/seo-status.md` — full SEO checklist: what's done vs. what needs an account login
 - `docs/seo-keyword-research.md` — competitors, keyword map, search intent, FAQ questions
 
-Top manual to-dos: set up **Google Business Profile**, verify **GSC + Bing** and submit
-the sitemap, and pick **one canonical domain** in Vercel (301 the other variant).
+Top manual to-dos: set up **Google Business Profile**, verify **GSC + Bing** and submit the sitemap,
+and pick **one canonical domain** in Vercel (301 the other variant).
