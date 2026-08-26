@@ -32,9 +32,8 @@ const WHY = [
   { title: 'Liability insured', text: 'Protecting your job from start to finish.' },
 ];
 
-// Safety credentials shown in the Health & Safety section (edit the copy freely).
+// Credentials that reinforce the WorkSafeBC compliance claim (edit the copy freely).
 const SAFETY = [
-  { title: 'WorkSafeBC compliant', text: 'We follow WorkSafeBC standards on every job.' },
   { title: 'Ladder safety', text: 'Trained in safe ladder setup and use on every property.' },
   { title: 'Fall protection', text: 'Proper gear and procedures whenever we work at height.' },
   { title: 'WHMIS', text: 'Certified in the safe handling of workplace materials.' },
@@ -182,27 +181,44 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* HEALTH & SAFETY */}
+      {/* SAFETY INTRO */}
       <section className="section tint-blue">
+        <div className="container center">
+          <span className="eyebrow">Health &amp; Safety</span>
+          <h2>Safety comes standard</h2>
+          <p className="lead">
+            Every job presents its own considerations, from working at height and navigating
+            delicate surfaces to accessing hard-to-reach areas. We assess each property, use the
+            right equipment and techniques, and put the appropriate safety measures in place
+            before we begin. This allows us to deliver great results while protecting your
+            property and everyone involved.
+          </p>
+        </div>
+      </section>
+
+      {/* WORKSAFEBC COMPLIANT — highlighted, reinforced by credentials */}
+      <section className="section tint-cream">
         <div className="container">
-          <div className="center" style={{ marginBottom: 40 }}>
-            <span className="eyebrow">Health &amp; Safety</span>
-            <h2>Safety comes standard</h2>
-            <p className="lead">
-              Every job presents its own considerations, from working at height and navigating
-              delicate surfaces to accessing hard-to-reach areas. We assess each property, use the
-              right equipment and techniques, and put the appropriate safety measures in place
-              before we begin. This allows us to deliver great results while protecting your
-              property and everyone involved.
+          <div className="worksafe-band">
+            <span className="eyebrow">Certified &amp; Compliant</span>
+            <h2>WorkSafeBC compliant</h2>
+            <p>
+              We meet WorkSafeBC standards on every job. The training and procedures below are how
+              we back that up — on site, every time.
             </p>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 24 }}>
-            {SAFETY.map((s) => (
-              <div key={s.title} className="card">
-                <h3>{s.title}</h3>
-                <p>{s.text}</p>
-              </div>
-            ))}
+            <div className="worksafe-creds">
+              {SAFETY.map((s) => (
+                <div key={s.title} className="cred">
+                  <span className="cred-check" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 13l4 4L19 7" /></svg>
+                  </span>
+                  <div>
+                    <strong>{s.title}</strong>
+                    <span>{s.text}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
