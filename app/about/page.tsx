@@ -67,7 +67,7 @@ export default function AboutPage() {
               <span className="wsbc-bc">BC</span>
             </span>
             <img className="cert-logo" src="/whmis.svg" alt="WHMIS" />
-            <img className="cert-logo" src="/first-aid.jpg" alt="Certified First-Aid Trained" />
+            <img className="cert-logo" src="/first-aid.jpg" alt="Certified First-Aid Trained" style={{ mixBlendMode: 'multiply' }} />
           </div>
         </div>
       </section>

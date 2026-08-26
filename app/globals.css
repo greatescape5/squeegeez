@@ -208,8 +208,8 @@ a { color: var(--teal); text-decoration: none; }
 
 /* About page — certifications strip */
 .cert-strip { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 48px; }
-.cert-logo { height: 72px; width: auto; display: block; }
-.cert-strip .wsbc { font-size: 1.7rem; }
+.cert-logo { height: 92px; width: auto; display: block; }
+.cert-strip .wsbc { font-size: 1.8rem; }
 
 /* About page — team photo */
 .about-photo {
