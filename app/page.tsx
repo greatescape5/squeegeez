@@ -207,7 +207,6 @@ export default async function HomePage() {
               </span>
             </div>
             <span className="eyebrow">Certified &amp; Compliant</span>
-            <h2>WorkSafeBC compliant</h2>
             <p>
               We meet WorkSafeBC standards on every job. The training and procedures below are how
               we back that up — on site, every time.
