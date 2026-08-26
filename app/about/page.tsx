@@ -13,8 +13,42 @@ export default function AboutPage() {
     <>
       <section className="hero" style={{ padding: '64px 0' }}>
         <div className="container center">
-          <span className="tag">About</span>
           <h1>About Squeegeez</h1>
+        </div>
+      </section>
+
+      {/* CERTIFICATIONS STRIP */}
+      <section className="section tint-cream" style={{ paddingTop: 30, paddingBottom: 30 }}>
+        <div className="container">
+          <div className="cert-strip">
+            <div className="cert-item">
+              <div className="cert-mark">
+                <span className="wsbc" role="img" aria-label="WorkSafeBC">
+                  <span className="wsbc-dark">WORK<span>SAFE</span></span>
+                  <span className="wsbc-bc">BC</span>
+                </span>
+              </div>
+              <span>Compliant</span>
+            </div>
+            <div className="cert-item">
+              <div className="cert-mark">
+                <svg width="54" height="54" viewBox="0 0 54 54" aria-hidden="true">
+                  <rect x="10" y="10" width="34" height="34" rx="4" transform="rotate(45 27 27)" fill="#fff" stroke="#d81e1e" strokeWidth="4" />
+                  <text x="27" y="36" textAnchor="middle" fontSize="26" fontWeight="700" fill="#111">!</text>
+                </svg>
+              </div>
+              <span>WHMIS certified</span>
+            </div>
+            <div className="cert-item">
+              <div className="cert-mark">
+                <svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true">
+                  <rect x="4" y="4" width="44" height="44" rx="8" fill="#1a9e57" />
+                  <path d="M26 14v24M14 26h24" stroke="#fff" strokeWidth="6" strokeLinecap="round" />
+                </svg>
+              </div>
+              <span>First Aid certified</span>
+            </div>
+          </div>
         </div>
       </section>
 
