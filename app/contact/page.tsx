@@ -34,7 +34,7 @@ export default function ContactPage() {
       <section id="get-in-touch" className="section tint-cream anchor-offset">
         <div className="container">
           <div className="center" style={{ marginBottom: 40 }}>
-            <span className="eyebrow">Reach Us Easily</span>
+            <span className="eyebrow">Prefer to reach out online?</span>
             <h2>Get in touch</h2>
           </div>
           <div className="grid grid-2 services-split">
