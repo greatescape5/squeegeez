@@ -19,10 +19,10 @@ const PHONE_HREF = 'tel:+12507848588';
 export const revalidate = 60;
 
 const SERVICES = [
-  { title: 'Residential windows', text: 'Interior and exterior cleaning for homes of all sizes.' },
-  { title: 'Commercial windows', text: 'Storefronts on a reliable recurring schedule.' },
-  { title: 'Track and screen cleaning', text: 'Window tracks and screens cleared of built-up dirt and debris.' },
-  { title: 'Gutter cleaning', text: 'Clear out debris before the Kootenay rains hit.' },
+  { title: 'Residential windows', text: 'Interior and exterior cleaning with careful attention to detail, leaving your glass, frames, and sills looking their best.' },
+  { title: 'Commercial windows', text: 'Consistent care for storefronts and commercial properties, with recurring schedules tailored to your property and needs.' },
+  { title: 'Track and screen cleaning', text: 'A detailed clean of window tracks and screens, removing built-up dust, dirt, and debris for a cleaner, more finished result.' },
+  { title: 'Gutter cleaning', text: 'Thorough removal of leaves, debris, and buildup, helping keep your gutters clear and your property protected from water overflow.' },
 ];
 
 const WHY = [
