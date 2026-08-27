@@ -89,7 +89,7 @@ export default function ContactForm() {
 
       <div className="field">
         <label htmlFor="message">Message</label>
-        <textarea id="message" name="message" placeholder="Tell us about your property & what you're looking for." />
+        <textarea id="message" name="message" placeholder="Tell us about your property and what you're looking for." />
       </div>
 
       <button type="submit" className="btn btn-primary" disabled={status === 'sending'}>

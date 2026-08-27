@@ -83,7 +83,7 @@ export default async function FolderPage({ params }: { params: { slug: string } 
           )}
 
           <div className="center" style={{ marginTop: 40 }}>
-            <Link href="/contact#get-in-touch" className="btn btn-primary">Get an Estimate</Link>
+            <Link href="/contact" className="btn btn-primary">Get an estimate</Link>
           </div>
         </div>
       </section>

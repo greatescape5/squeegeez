@@ -40,7 +40,7 @@ export default function SiteHeader() {
           <Link href="/services" onClick={close}>Services</Link>
           <Link href="/about" onClick={close}>About</Link>
           <Link href="/contact" onClick={close}>Contact</Link>
-          <Link href="/contact#get-in-touch" className="btn btn-primary nav-cta" onClick={close}>Get an estimate</Link>
+          <Link href="/contact" className="btn btn-primary nav-cta" onClick={close}>Get an estimate</Link>
         </nav>
       </div>
     </header>

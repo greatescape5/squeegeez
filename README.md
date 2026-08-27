@@ -14,7 +14,8 @@ Domain: **squeegeez.ca** (GoDaddy DNS → Vercel).
   certifications strip (WorkSafeBC · WHMIS · First-Aid), and a CTA.
 - `/contact` — hero with a **Call us** button, then **Get in touch**: contact-info card
   (call/text, email, location, social links) beside the lead form. "Get an estimate" buttons
-  deep-link to `/contact#get-in-touch` and auto-scroll to the form.
+  link to `/contact` (top of the page, so visitors land on the Call-us hero first). The
+  `#get-in-touch` anchor + `HashScroll` still exist if you ever want to deep-link to the form.
 - `/admin` — hidden login (the faint “.” in the footer links here).
 - `/admin/dashboard` — management area (see below).
 

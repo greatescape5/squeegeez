@@ -19,23 +19,23 @@ const PHONE_HREF = 'tel:+12507848588';
 export const revalidate = 60;
 
 const SERVICES = [
-  { title: 'Residential windows', text: 'Interior & exterior cleaning with careful attention to detail, leaving your glass, frames, & sills looking their best.' },
-  { title: 'Commercial windows', text: 'Consistent care for storefronts & commercial properties, with recurring schedules tailored to your property & needs.' },
-  { title: 'Track & screen cleaning', text: 'A detailed clean of window tracks & screens, removing built-up dust, dirt, & debris for a cleaner, more finished result.' },
-  { title: 'Gutter cleaning', text: 'Thorough removal of leaves, debris, & buildup, helping keep your gutters clear & your property protected from water overflow.' },
+  { title: 'Residential windows', text: 'Interior and exterior cleaning with careful attention to detail, leaving your glass, frames, and sills looking their best.' },
+  { title: 'Commercial windows', text: 'Consistent care for storefronts and commercial properties, with recurring schedules tailored to your property and needs.' },
+  { title: 'Track & screen cleaning', text: 'A detailed clean of window tracks and screens, removing built-up dust, dirt, and debris for a cleaner, more finished result.' },
+  { title: 'Gutter cleaning', text: 'Thorough removal of leaves, debris, and buildup, helping keep your gutters clear and your property protected from water overflow.' },
 ];
 
 const WHY = [
   { title: 'Licensed business', text: 'Trusted, professional service.' },
   { title: 'Quality results', text: '10+ years industry experience.' },
-  { title: 'Reliable & on time', text: 'Flexible & reliable scheduling.' },
+  { title: 'Reliable & on time', text: 'Flexible and reliable scheduling.' },
   { title: 'Liability insured', text: 'Protecting your job from start to finish.' },
 ];
 
 // Credentials that reinforce the WorkSafeBC compliance claim (edit the copy freely).
 const SAFETY = [
-  { title: 'Ladder safety', text: 'Trained in safe ladder setup & use on every property.' },
-  { title: 'Fall protection', text: 'Proper gear & procedures whenever we work at height.' },
+  { title: 'Ladder safety', text: 'Trained in safe ladder setup and use on every property.' },
+  { title: 'Fall protection', text: 'Proper gear and procedures whenever we work at height.' },
   { title: 'WHMIS', text: 'Certified in the safe handling of workplace materials.' },
   { title: 'First Aid certified', text: 'Ready to respond quickly if anything comes up on the job.' },
 ];
@@ -47,7 +47,7 @@ const SHOW_REVIEWS = false;
 const SHOW_PROJECTS = false;
 
 const REVIEWS = [
-  { text: 'Windows, gutters, & the deck all done in one visit. Huge time saver.', who: 'Dana K., Nelson' },
+  { text: 'Windows, gutters, and the deck all done in one visit. Huge time saver.', who: 'Dana K., Nelson' },
   { text: 'Does our storefront every two weeks. Reliable, affordable, always professional.', who: 'Tom R., Trail' },
   { text: 'Showed up on time, windows looked brand new. Will absolutely book again.', who: 'Sarah M., Castlegar' },
 ];
@@ -68,10 +68,10 @@ export default async function HomePage() {
           <h1>Crystal clear windows.<br />Done right.</h1>
           <h2 className="hero-subtitle">Proudly serving the West Kootenays</h2>
           <p className="lead">
-            Professional window washing &amp; exterior care for homes &amp; businesses.
+            Professional window washing and exterior care for homes and businesses.
           </p>
           <div className="btn-row" style={{ marginTop: 8 }}>
-            <Link href="/contact#get-in-touch" className="btn btn-primary">Get an estimate</Link>
+            <Link href="/contact" className="btn btn-primary">Get an estimate</Link>
             <a href={PHONE_HREF} className="btn btn-outline">Call now</a>
           </div>
         </div>
@@ -163,10 +163,10 @@ export default async function HomePage() {
             <span className="eyebrow">Why Us</span>
             <h2>Why choose Squeegeez?</h2>
             <p className="lead">
-              With 10+ years of hands-on experience &amp; a deep understanding of professional
-              window &amp; exterior cleaning, we bring the knowledge, precision, &amp; attention to
+              With 10+ years of hands-on experience and a deep understanding of professional
+              window and exterior cleaning, we bring the knowledge, precision, and attention to
               detail that exceptional results require. We take pride in doing the job
-              properly—from the products &amp; techniques we use to the way we treat your
+              properly—from the products and techniques we use to the way we treat your
               property—so you can feel confident your home or business is in capable hands.
             </p>
           </div>
@@ -187,11 +187,11 @@ export default async function HomePage() {
           <span className="eyebrow">Health &amp; Safety</span>
           <h2>Safety comes standard</h2>
           <p className="lead">
-            Every job presents its own considerations, from working at height &amp; navigating
+            Every job presents its own considerations, from working at height and navigating
             delicate surfaces to accessing hard-to-reach areas. We assess each property, use the
-            right equipment &amp; techniques, &amp; put the appropriate safety measures in place
+            right equipment and techniques, and put the appropriate safety measures in place
             before we begin. This allows us to deliver great results while protecting your
-            property &amp; everyone involved.
+            property and everyone involved.
           </p>
         </div>
       </section>
@@ -200,18 +200,17 @@ export default async function HomePage() {
       <section className="section tint-cream">
         <div className="container">
           <div className="worksafe-band">
-            <div className="worksafe-logo">
-              <span className="wsbc" role="img" aria-label="WorkSafeBC">
-                <span className="wsbc-dark">WORK<span>SAFE</span></span>
-                <span className="wsbc-bc">BC</span>
-              </span>
-            </div>
-            <span className="eyebrow">Certified &amp; Compliant</span>
-            <p>
-              We meet WorkSafeBC standards on every job. The training &amp; procedures below are how
-              we back that up — on site, every time.
-            </p>
             <div className="worksafe-creds">
+              {/* WorkSafeBC compliance is the first of five tiles */}
+              <div className="cred">
+                <span className="cred-check" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 13l4 4L19 7" /></svg>
+                </span>
+                <div>
+                  <strong>WorkSafeBC compliant</strong>
+                  <span>Our work follows WorkSafeBC requirements for working at heights, equipment use, and safe work practices.</span>
+                </div>
+              </div>
               {SAFETY.map((s) => (
                 <div key={s.title} className="cred">
                   <span className="cred-check" aria-hidden="true">
@@ -267,7 +266,7 @@ export default async function HomePage() {
             <h2>Ready to refresh your view?</h2>
             <p>Give your property the care it deserves. Get in touch with Squeegeez today for a free, no-obligation estimate.</p>
             <div className="btn-row center">
-              <Link href="/contact#get-in-touch" className="btn btn-primary">Get an estimate</Link>
+              <Link href="/contact" className="btn btn-primary">Get an estimate</Link>
               <a href={PHONE_HREF} className="btn btn-ghost">Call {PHONE}</a>
             </div>
           </div>

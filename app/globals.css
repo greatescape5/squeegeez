@@ -266,7 +266,7 @@ a { color: var(--teal); text-decoration: none; }
 }
 .worksafe-band .eyebrow { color: var(--gold); }
 /* WorkSafeBC wordmark badge (CSS recreation; swap for /worksafebc.png if preferred) */
-.worksafe-logo { display: inline-block; margin: 0 16px 20px 0; }
+.worksafe-logo { display: inline-block; margin: 0 0 24px; }
 .wsbc { display: inline-flex; overflow: hidden; border-radius: 3px; font-weight: 800; font-size: 1.35rem; line-height: 1; letter-spacing: 0.02em; }
 .wsbc-dark { background: #0a0a0a; color: #fff; padding: 9px 11px; }
 .wsbc-dark span { margin-left: 7px; }
@@ -274,8 +274,8 @@ a { color: var(--teal); text-decoration: none; }
 .worksafe-band h2 { color: #fff; }
 .worksafe-band > p { color: #d3e3ec; max-width: 640px; margin: 0 auto 30px; }
 .worksafe-creds {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 16px; text-align: left;
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 14px; text-align: left;
 }
 .cred {
   display: flex; gap: 12px; align-items: flex-start;
@@ -288,7 +288,11 @@ a { color: var(--teal); text-decoration: none; }
 }
 .cred strong { display: block; color: #fff; font-size: 1rem; margin-bottom: 2px; }
 .cred span { color: #cddbe4; font-size: 0.9rem; }
-@media (max-width: 640px) { .worksafe-band { padding: 32px 22px; } }
+@media (max-width: 1024px) { .worksafe-creds { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 640px) {
+  .worksafe-band { padding: 32px 22px; }
+  .worksafe-creds { grid-template-columns: 1fr; }
+}
 
 /* Full-width closing CTA band (Services page) */
 .cta-final { background: var(--navy); }

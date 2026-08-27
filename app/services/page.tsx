@@ -62,7 +62,7 @@ export default async function ServicesPage() {
               <p>
                 We&rsquo;ll figure it out together. Get in touch for a free, no-pressure estimate.
               </p>
-              <Link href="/contact#get-in-touch" className="btn btn-primary">Get an estimate</Link>
+              <Link href="/contact" className="btn btn-primary">Get an estimate</Link>
               <a href={PHONE_HREF} className="btn btn-ghost">Call {PHONE}</a>
             </div>
           </div>
@@ -115,7 +115,7 @@ export default async function ServicesPage() {
           <h2>Start your project with confidence</h2>
           <p>Contact Squeegeez today for a free estimate — no pressure, no obligations.</p>
           <div className="btn-row center">
-            <Link href="/contact#get-in-touch" className="btn btn-primary">Get an estimate</Link>
+            <Link href="/contact" className="btn btn-primary">Get an estimate</Link>
             <a href={PHONE_HREF} className="btn btn-ghost">Call now</a>
           </div>
         </div>
