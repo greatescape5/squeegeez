@@ -208,7 +208,7 @@ export default async function HomePage() {
                 </span>
                 <div>
                   <strong>WorkSafeBC compliant</strong>
-                  <span>Our work follows WorkSafeBC requirements for working at heights, equipment use, and safe work practices.</span>
+                  <span>We follow WorkSafeBC requirements for safe work practices.</span>
                 </div>
               </div>
               {SAFETY.map((s) => (
